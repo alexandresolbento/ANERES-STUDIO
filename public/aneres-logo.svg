@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="aneres-orange" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EA580C" />
+      <stop offset="60%" stop-color="#F97316" />
+      <stop offset="100%" stop-color="#FDBA74" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Stylized Letter 'A' (White/Dark for contrasts) -->
+  <path d="M 100 20 L 88 20 L 32 160 L 60 160 L 76 120 L 98 62 Z" fill="#F4F4F5" />
+  <path d="M 100 20 L 112 20 L 168 160 L 140 160 L 124 120 L 102 62 Z" fill="#F4F4F5" />
+  <polygon points="100,14 86,52 114,52" fill="#F4F4F5" />
+  
+  <!-- Sweeping Audiovisual Orange Swoosh -->
+  <path d="M 36 120 C 58 116, 76 108, 98 100 C 112 94, 130 90, 144 90 L 144 98 C 126 99, 110 104, 94 110 C 72 118, 54 124, 36 126 Z" fill="url(#aneres-orange)" />
+  
+  <!-- Video Camera Icon & Projector Lens -->
+  <rect x="142" y="81" width="26" height="20" rx="3.5" fill="url(#aneres-orange)" />
+  <path d="M 148 81 L 151 75 L 159 75 L 162 81 Z" fill="url(#aneres-orange)" />
+  <polygon points="168,87 188,77 188,105 168,95" fill="url(#aneres-orange)" />
+  <circle cx="192" cy="91" r="2" fill="#FED7AA" />
+</svg>
