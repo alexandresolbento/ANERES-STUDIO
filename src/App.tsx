@@ -1,15 +1,75 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { User } from 'firebase/auth';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { VideoShowcase } from './components/VideoShowcase';
 import { Services } from './components/Services';
+import { ConversionBanner } from './components/ConversionBanner';
 import { ContactForm } from './components/ContactForm';
 import { CinemaModal } from './components/CinemaModal';
+import { FloatingQuoteCTA } from './components/FloatingQuoteCTA';
+import { AdminQuotesModal } from './components/AdminQuotesModal';
 import { Footer } from './components/Footer';
 import { AIErrorBoundary } from './components/AIErrorBoundary';
 import { VideoWork } from './types';
+import { initAuth, setCachedAccessToken } from './firebase';
 
 export default function App() {
+  // Auth state for Google / Gmail integration
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = initAuth(
+      (user, token) => {
+        setCurrentUser(user);
+        if (token) {
+          setAccessToken(token);
+          setCachedAccessToken(token);
+        }
+      },
+      () => {
+        setCurrentUser(null);
+        setAccessToken(null);
+      }
+    );
+
+    // Check URL parameters for admin access (e.g., ?admin=true or #admin)
+    const checkAdminQuery = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('admin') === 'true' || window.location.hash === '#admin') {
+        setIsAdminModalOpen(true);
+      }
+    };
+    checkAdminQuery();
+    window.addEventListener('hashchange', checkAdminQuery);
+
+    // Discrete keyboard shortcut for administrator: Ctrl+Shift+A or Alt+A
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') ||
+        (e.altKey && e.key.toLowerCase() === 'a')
+      ) {
+        e.preventDefault();
+        setIsAdminModalOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      unsubscribe();
+      window.removeEventListener('hashchange', checkAdminQuery);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  const handleAuthChange = (user: User | null, token: string | null) => {
+    setCurrentUser(user);
+    setAccessToken(token);
+    setCachedAccessToken(token);
+  };
+
   // Cinema modal state
   const [cinemaVideo, setCinemaVideo] = useState<{
     isOpen: boolean;
@@ -82,14 +142,22 @@ export default function App() {
           <Services onSelectServiceToQuote={handleSelectServiceToQuote} />
         </AIErrorBoundary>
 
+        {/* Banner de Alta Conversão para Atração de Clientes */}
+        <AIErrorBoundary fallbackName="Chamada de Conversão">
+          <ConversionBanner />
+        </AIErrorBoundary>
+
         {/* Formulário de Orçamento & Contato */}
         <AIErrorBoundary fallbackName="Formulário de Orçamentos">
           <ContactForm prefilledService={prefilledService} />
         </AIErrorBoundary>
       </main>
 
+      {/* Floating Persistent WhatsApp / Quote CTA */}
+      <FloatingQuoteCTA />
+
       {/* Footer */}
-      <Footer />
+      <Footer onOpenAdmin={() => setIsAdminModalOpen(true)} />
 
       {/* YouTube Cinema Player Modal */}
       <CinemaModal
@@ -101,6 +169,15 @@ export default function App() {
         onClose={() =>
           setCinemaVideo((prev) => ({ ...prev, isOpen: false }))
         }
+      />
+
+      {/* Base de Dados de Orçamentos & Central Gmail Modal */}
+      <AdminQuotesModal
+        isOpen={isAdminModalOpen}
+        onClose={() => setIsAdminModalOpen(false)}
+        currentUser={currentUser}
+        accessToken={accessToken}
+        onAuthChange={handleAuthChange}
       />
     </div>
   );

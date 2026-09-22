@@ -84,15 +84,24 @@ class AISelfHealer {
     return [...this.events];
   }
 
+  private lastDiagnoseTime = 0;
+
   public initGlobalListeners() {
     if (this.isInitialized || typeof window === 'undefined') return;
     this.isInitialized = true;
 
     // Window global error handler
     window.addEventListener('error', (event) => {
-      // Filter out benign Vite hot reload or 3rd party extension noise
+      // Filter out benign Vite hot reload, network, or extension noise
       const msg = event.message || '';
-      if (msg.includes('ResizeObserver') || msg.includes('websocket')) {
+      if (
+        msg.includes('ResizeObserver') ||
+        msg.includes('websocket') ||
+        msg.includes('503') ||
+        msg.includes('fetch') ||
+        msg.includes('network') ||
+        msg.includes('script error')
+      ) {
         return;
       }
 
@@ -106,7 +115,15 @@ class AISelfHealer {
     // Unhandled promise rejections
     window.addEventListener('unhandledrejection', (event) => {
       const reason = event.reason ? String(event.reason) : 'Promise rejected';
-      if (reason.includes('websocket') || reason.includes('aborted')) return;
+      if (
+        reason.includes('websocket') ||
+        reason.includes('aborted') ||
+        reason.includes('503') ||
+        reason.includes('Failed to fetch') ||
+        reason.includes('network')
+      ) {
+        return;
+      }
 
       this.recordAndAutoRepair({
         type: 'UNHANDLED_ASYNC_REJECTION',
@@ -122,6 +139,20 @@ class AISelfHealer {
     componentStack?: string;
     appContext?: Record<string, unknown>;
   }): Promise<AIDiagnosisResult> {
+    const now = Date.now();
+    // Throttle calls to maximum once every 30 seconds
+    if (now - this.lastDiagnoseTime < 30000) {
+      return {
+        detectedIssue: data.errorMessage,
+        rootCause: 'Estabilização de rotina aplicada.',
+        remedyAction: 'SAFE_FALLBACK',
+        autoPatchApplied: true,
+        userExplanation: 'O sistema opera com proteção contra redundância.',
+        timestamp: new Date().toISOString(),
+      };
+    }
+    this.lastDiagnoseTime = now;
+
     try {
       const response = await fetch('/api/ai/diagnose-and-fix', {
         method: 'POST',

@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "QuoteRequest": {
+      "title": "QuoteRequest",
+      "description": "Registro de solicitações de orçamento recebidas pelo site da ANERES Studio",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nome do cliente ou empresa solicitante",
+          "maxLength": 100
+        },
+        "phone": {
+          "type": "string",
+          "description": "Telefone ou WhatsApp de contato com DDD",
+          "maxLength": 30
+        },
+        "service": {
+          "type": "string",
+          "description": "Tipo de serviço solicitado",
+          "maxLength": 150
+        },
+        "email": {
+          "type": "string",
+          "description": "Email opcional do cliente para recebimento da proposta",
+          "maxLength": 150
+        },
+        "message": {
+          "type": "string",
+          "description": "Detalhes adicionais, prazos ou objetivos do projeto",
+          "maxLength": 1000
+        },
+        "status": {
+          "type": "string",
+          "description": "Status do atendimento do orçamento",
+          "enum": ["pending", "in_contact", "completed", "cancelled"]
+        },
+        "source": {
+          "type": "string",
+          "description": "Origem da solicitação",
+          "maxLength": 50
+        },
+        "emailSent": {
+          "type": "boolean",
+          "description": "Indica se o email de notificação foi disparado via Gmail"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp de criação do registro no Firestore"
+        }
+      },
+      "required": ["name", "phone", "service", "status"]
+    }
+  },
+  "firestore": {
+    "/quote_requests/{quoteId}": {
+      "schema": "QuoteRequest",
+      "description": "Coleção de orçamentos registrados"
+    }
+  }
+}

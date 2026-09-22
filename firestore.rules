@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'alexandresolbento@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidQuote(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.phone is string && data.phone.size() > 0 && data.phone.size() <= 30 &&
+             data.service is string && data.service.size() > 0 && data.service.size() <= 150 &&
+             (!('email' in data) || (data.email is string && data.email.size() <= 150)) &&
+             (!('message' in data) || (data.message is string && data.message.size() <= 1000)) &&
+             (!('source' in data) || (data.source is string && data.source.size() <= 50)) &&
+             (!('emailSent' in data) || (data.emailSent is bool)) &&
+             data.status in ['pending', 'in_contact', 'completed', 'cancelled'];
+    }
+
+    match /quote_requests/{quoteId} {
+      allow create: if isValidId(quoteId) &&
+                       isValidQuote(request.resource.data) &&
+                       request.resource.data.status == 'pending';
+      allow read: if isAdmin() || (isSignedIn() && resource.data.email == request.auth.token.email);
+      allow update, delete: if isAdmin();
+    }
+
+    match /admins/{userId} {
+      allow read: if isSignedIn();
+      allow write: if false;
+    }
+  }
+}

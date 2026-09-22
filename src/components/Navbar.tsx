@@ -135,8 +135,12 @@ export function Navbar({ onOpenVideoReel }: NavbarProps) {
       {mobileMenuOpen && (
         <div
           id="mobile-menu-drawer"
-          className="md:hidden bg-zinc-950/95 border-b border-zinc-800 px-4 pt-3 pb-6 space-y-4 backdrop-blur-xl animate-in fade-in slide-in-from-top-4 duration-200"
+          className="md:hidden bg-zinc-950/95 border-b border-zinc-800 px-4 pt-4 pb-6 space-y-4 backdrop-blur-xl animate-in fade-in slide-in-from-top-4 duration-200"
         >
+          <div className="pb-3 border-b border-zinc-800/70 flex justify-center">
+            <AneresLogo variant="horizontal" size="md" />
+          </div>
+
           <div className="flex flex-col space-y-1">
             {navLinks.map((link) => (
               <a
@@ -210,10 +214,21 @@ export function Navbar({ onOpenVideoReel }: NavbarProps) {
             <a
               href="#contato"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 w-full py-2.5 text-xs font-bold text-zinc-950 bg-amber-400 hover:bg-amber-300 rounded-lg cursor-pointer"
+              className="flex items-center justify-center gap-2 w-full py-3 text-xs font-black text-zinc-950 bg-amber-400 hover:bg-amber-300 rounded-lg cursor-pointer shadow-md"
             >
-              <span>Fale com Nosso Time</span>
+              <span>Solicitar Orçamento Grátis</span>
               <ArrowUpRight className="w-4 h-4" />
+            </a>
+
+            <a
+              href="https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20minha%20empresa."
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-center gap-2 w-full py-2.5 text-xs font-bold text-zinc-950 bg-emerald-500 hover:bg-emerald-400 rounded-lg cursor-pointer"
+            >
+              <MessageCircle className="w-4 h-4 fill-current" />
+              <span>Chamar no WhatsApp (99) 99933-1639</span>
             </a>
           </div>
         </div>

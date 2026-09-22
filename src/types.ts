@@ -16,13 +16,28 @@ export interface VideoWork {
 
 export interface ContactFormData {
   name: string;
-  email: string;
-  company: string;
   phone: string;
   service: string;
-  budget: string;
+  email?: string;
+  company?: string;
+  budget?: string;
   website?: string;
-  message: string;
+  message?: string;
+}
+
+export interface QuoteRecord {
+  id: string;
+  name: string;
+  phone: string;
+  service: string;
+  email?: string;
+  company?: string;
+  message?: string;
+  status: 'pending' | 'in_contact' | 'completed' | 'cancelled';
+  source?: string;
+  createdAt: string;
+  emailSent?: boolean;
+  emailSentAt?: string;
 }
 
 export interface ServiceItem {

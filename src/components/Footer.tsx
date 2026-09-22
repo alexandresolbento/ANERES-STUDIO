@@ -1,7 +1,11 @@
 import { ArrowUp, Youtube, Instagram, MessageCircle, Shield } from 'lucide-react';
 import { AneresLogo } from './AneresLogo';
 
-export function Footer() {
+interface FooterProps {
+  onOpenAdmin?: () => void;
+}
+
+export function Footer({ onOpenAdmin }: FooterProps) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -13,7 +17,7 @@ export function Footer() {
           {/* Col 1 & 2: Brand & Social Channels */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center">
-              <AneresLogo variant="horizontal" size="md" />
+              <AneresLogo variant="horizontal" size="lg" />
             </div>
             <p className="text-zinc-400 max-w-sm text-xs sm:text-sm leading-relaxed">
               ANERES Studio — Produção audiovisual em 4K, comerciais de TV e redes sociais, cobertura de eventos e soluções sob medida para destacar sua marca.
@@ -133,7 +137,13 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400">
-          <p>© {new Date().getFullYear()} ANERES Studio - Produções Audiovisuais & Soluções Criativas. Todos os direitos reservados.</p>
+          <p
+            onDoubleClick={onOpenAdmin}
+            className="cursor-default select-none"
+            title="ANERES Studio"
+          >
+            © {new Date().getFullYear()} ANERES Studio - Produções Audiovisuais & Soluções Criativas. Todos os direitos reservados.
+          </p>
           <button
             type="button"
             onClick={scrollToTop}

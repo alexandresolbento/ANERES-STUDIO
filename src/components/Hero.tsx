@@ -1,11 +1,16 @@
-import { ArrowRight, Play, CheckCircle2, Sparkles, Youtube } from 'lucide-react';
+import { ArrowRight, Play, CheckCircle2, Sparkles, Youtube, MessageCircle } from 'lucide-react';
 import { CLIENT_LOGOS } from '../data/services';
+import { AneresLogo } from './AneresLogo';
+import { AneresWatermark } from './AneresWatermark';
 
 interface HeroProps {
   onOpenVideoReel: () => void;
 }
 
 export function Hero({ onOpenVideoReel }: HeroProps) {
+  const whatsappUrl =
+    'https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20minha%20empresa.';
+
   return (
     <section
       id="hero-section"
@@ -18,13 +23,25 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
       {/* Decorative grid lines */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#27272a15_1px,transparent_1px),linear-gradient(to_bottom,#27272a15_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Tag */}
-        <div className="flex justify-center mb-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-amber-400/30 text-xs font-semibold text-amber-400 shadow-sm shadow-amber-400/5 backdrop-blur-sm">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Studio Audiovisual & Produções Profissionais</span>
-          </div>
+      {/* Subtle ANERES Studio Brand Watermark Elements */}
+      <AneresWatermark
+        position="top-right"
+        size="xl"
+        opacity="opacity-[0.035] sm:opacity-[0.045] md:opacity-[0.05]"
+        rotation="-rotate-12"
+      />
+      <AneresWatermark
+        position="bottom-left"
+        size="md"
+        opacity="opacity-[0.02] sm:opacity-[0.03]"
+        rotation="rotate-6"
+        glow={false}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Top Prominent Brand Lockup */}
+        <div className="flex justify-center mb-8">
+          <AneresLogo variant="badge" size="md" />
         </div>
 
         {/* Main Headline */}
@@ -42,39 +59,39 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
             <strong className="text-zinc-100 font-semibold">identidade visual e presença digital</strong> com dedicação, transparência e propostas pensadas para a realidade de cada cliente.
           </p>
 
-          {/* Call to Actions */}
+          {/* High-Impact Client Attraction CTAs */}
           <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <a
-              href="#portfolio"
-              id="hero-explore-portfolio-btn"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-bold text-zinc-950 bg-amber-400 hover:bg-amber-300 rounded-xl shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 transition-all group cursor-pointer"
+              href="#contato"
+              id="hero-request-quote-btn"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 text-sm sm:text-base font-extrabold text-zinc-950 bg-amber-400 hover:bg-amber-300 rounded-xl shadow-xl shadow-amber-500/25 hover:shadow-amber-500/35 transition-all hover:scale-105 group cursor-pointer"
             >
-              <span>Ver Portfólio em Vídeo</span>
+              <span>Solicitar Orçamento Grátis</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              id="hero-whatsapp-direct-btn"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 text-sm font-bold text-zinc-950 bg-emerald-500 hover:bg-emerald-400 rounded-xl shadow-lg shadow-emerald-500/20 hover:scale-105 transition-all group cursor-pointer"
+            >
+              <MessageCircle className="w-4 h-4 fill-current" />
+              <span>Chamar no WhatsApp</span>
             </a>
 
             <button
               type="button"
               id="hero-watch-reel-btn"
               onClick={onOpenVideoReel}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 text-sm font-semibold text-zinc-200 hover:text-white bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700/80 rounded-xl transition-all shadow-md group cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 text-sm font-semibold text-zinc-200 hover:text-white bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700/80 rounded-xl transition-all shadow-md group cursor-pointer"
             >
-              <div className="w-6 h-6 rounded-full bg-amber-400 flex items-center justify-center text-zinc-950 group-hover:scale-110 transition-transform">
-                <Play className="w-3 h-3 fill-current ml-0.5" />
+              <div className="w-5 h-5 rounded-full bg-amber-400 flex items-center justify-center text-zinc-950 group-hover:scale-110 transition-transform">
+                <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
               </div>
               <span>Assistir Showreel</span>
             </button>
-
-            <a
-              href="https://www.youtube.com/@ANERESSTUDIO"
-              target="_blank"
-              rel="noopener noreferrer"
-              id="hero-youtube-channel-link"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-200 hover:text-white bg-red-950/40 hover:bg-red-900/60 border border-red-500/30 rounded-xl transition-all shadow-md group"
-            >
-              <Youtube className="w-4 h-4 text-red-500 fill-current group-hover:scale-110 transition-transform" />
-              <span>Canal @ANERESSTUDIO</span>
-            </a>
           </div>
 
           {/* Quick trust proofs */}

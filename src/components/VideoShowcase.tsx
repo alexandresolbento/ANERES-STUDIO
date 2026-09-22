@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { Play, ExternalLink, Youtube, Film, Eye, Clock, MonitorPlay } from 'lucide-react';
+import { Play, ExternalLink, Youtube, Film, Eye, Clock, MonitorPlay, MessageCircle, Sparkles, ArrowRight } from 'lucide-react';
 import { FEATURED_VIDEOS } from '../data/videos';
 import { VideoWork } from '../types';
+import { AneresLogo } from './AneresLogo';
+import { AneresWatermark } from './AneresWatermark';
 
 interface VideoShowcaseProps {
   onSelectVideoForCinema: (video: VideoWork) => void;
@@ -25,17 +27,35 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
     : FEATURED_VIDEOS.filter((v) => v.category === selectedCategory);
 
   return (
-    <section id="portfolio" className="py-20 md:py-28 relative bg-zinc-950/90 border-t border-zinc-900">
+    <section id="portfolio" className="py-20 md:py-28 relative bg-zinc-950/90 border-t border-zinc-900 overflow-hidden">
       {/* Visual glow */}
       <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-red-600/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Subtle ANERES Studio Brand Watermark Elements */}
+      <AneresWatermark
+        position="top-left"
+        size="xl"
+        opacity="opacity-[0.03] sm:opacity-[0.04]"
+        rotation="rotate-12"
+      />
+      <AneresWatermark
+        position="bottom-right"
+        size="lg"
+        opacity="opacity-[0.025] sm:opacity-[0.035]"
+        rotation="-rotate-6"
+        glow={true}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-zinc-800/80">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-red-950/40 border border-red-500/20 text-xs font-semibold text-red-400 mb-3">
-              <Youtube className="w-3.5 h-3.5 text-red-500 fill-current" />
-              <span>Portfólio em Vídeo & Produções no YouTube</span>
+            <div className="flex flex-wrap items-center gap-3 mb-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-red-950/40 border border-red-500/20 text-xs font-semibold text-red-400">
+                <Youtube className="w-3.5 h-3.5 text-red-500 fill-current" />
+                <span>Portfólio em Vídeo & Produções no YouTube</span>
+              </div>
+              <AneresLogo variant="seal" />
             </div>
             <h2 className="font-heading text-2xl sm:text-4xl font-bold tracking-tight text-white">
               Nossos Trabalhos Audiovisuais
@@ -254,6 +274,43 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
             );
           })}
         </div>
+
+        {/* Lead Attraction Banner After Portfolio */}
+        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-zinc-900/90 border border-amber-400/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
+          <div className="text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-xs font-bold text-amber-400 mb-2">
+              <Sparkles className="w-3 h-3 fill-current" />
+              <span>Gostou do estilo das produções?</span>
+            </div>
+            <h3 className="font-heading text-xl sm:text-2xl font-bold text-white">
+              Sua Empresa Merece um Vídeo com essa Mesma Qualidade
+            </h3>
+            <p className="mt-1 text-xs sm:text-sm text-zinc-300 max-w-xl">
+              Criamos roteiros sob medida, gravações em 4K e formatos prontos para redes sociais, anúncios ou TV.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
+            <a
+              href="https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostei%20dos%20v%C3%ADdeos%20da%20ANERES%20Studio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20empresa."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs sm:text-sm transition-all shadow-md hover:scale-105 cursor-pointer"
+            >
+              <MessageCircle className="w-4 h-4 fill-current" />
+              <span>Pedir Orçamento no WhatsApp</span>
+            </a>
+
+            <a
+              href="#contato"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-zinc-950 font-bold text-xs sm:text-sm transition-all shadow-md hover:scale-105 cursor-pointer"
+            >
+              <span>Ver Valores & Proposta</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
   );

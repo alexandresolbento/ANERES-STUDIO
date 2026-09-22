@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { X, Youtube, ExternalLink, Share2, Check } from 'lucide-react';
 import { useState } from 'react';
+import { AneresLogo } from './AneresLogo';
 
 interface CinemaModalProps {
   isOpen: boolean;
@@ -33,9 +34,18 @@ export function CinemaModal({ isOpen, videoId, title, client, description, onClo
   const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
   const handleShare = () => {
-    navigator.clipboard.writeText(youtubeUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(youtubeUrl).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        }).catch(() => {
+          setCopied(false);
+        });
+      }
+    } catch {
+      setCopied(false);
+    }
   };
 
   return (
@@ -49,8 +59,9 @@ export function CinemaModal({ isOpen, videoId, title, client, description, onClo
       >
         {/* Cinema Screen Header Bar */}
         <div className="bg-zinc-900/90 px-4 sm:px-6 py-3 border-b border-zinc-800 flex items-center justify-between">
-          <div className="flex items-center gap-2.5 overflow-hidden">
-            <div className="w-3 h-3 rounded-full bg-red-600 animate-pulse shrink-0" />
+          <div className="flex items-center gap-3 overflow-hidden">
+            <AneresLogo variant="mark" size="xs" />
+            <div className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse shrink-0" />
             <span className="text-xs font-mono text-zinc-300 uppercase tracking-wider truncate">
               {client ? `${client} // ` : ''}{title}
             </span>
