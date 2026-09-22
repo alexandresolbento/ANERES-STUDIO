@@ -28,9 +28,9 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
     : FEATURED_VIDEOS.filter((v) => v.category === selectedCategory);
 
   return (
-    <section id="portfolio" className="py-20 md:py-28 relative bg-zinc-950/90 border-t border-zinc-900 overflow-hidden">
+    <section id="portfolio" className="py-20 md:py-28 relative bg-zinc-950/90 border-t border-zinc-900 overflow-hidden w-full max-w-full">
       {/* Visual glow */}
-      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-red-600/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-red-600/5 rounded-full blur-[90px] pointer-events-none transform-gpu" />
 
       {/* Subtle ANERES Studio Brand Watermark Elements */}
       <AneresWatermark
@@ -73,14 +73,14 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 py-1 w-full md:w-auto">
             {categories.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 id={`filter-video-${cat.toLowerCase().replace(/\s+/g, '-')}`}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
                   selectedCategory === cat
                     ? 'bg-amber-400 text-zinc-950 shadow-md shadow-amber-400/20'
                     : 'bg-zinc-900 text-zinc-300 hover:text-white hover:bg-zinc-800 border border-zinc-800'

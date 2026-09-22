@@ -10,14 +10,19 @@ export function ConversionBanner() {
   const scrollToContact = () => {
     const el = document.getElementById('contato');
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const navOffset = 76;
+      const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - navOffset,
+        behavior: 'smooth',
+      });
     }
   };
 
   return (
-    <section className="py-14 relative overflow-hidden bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 border-y border-zinc-800/80">
+    <section className="py-14 relative overflow-hidden w-full max-w-full bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 border-y border-zinc-800/80">
       {/* Glow Effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-amber-500/10 rounded-full blur-[100px] pointer-events-none transform-gpu" />
 
       {/* Subtle brand watermark */}
       <AneresWatermark

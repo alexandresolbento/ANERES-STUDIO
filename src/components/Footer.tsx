@@ -10,8 +10,25 @@ export function Footer({ onOpenAdmin }: FooterProps) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleFooterNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (href === '#' || href === '#hero-section') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    const target = document.querySelector(href);
+    if (target) {
+      const navOffset = 76;
+      const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - navOffset,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
-    <footer className="bg-black border-t border-zinc-900 pt-16 pb-12 text-zinc-400 text-xs sm:text-sm">
+    <footer className="bg-black border-t border-zinc-900 pt-16 pb-12 text-zinc-400 text-xs sm:text-sm overflow-hidden w-full max-w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-zinc-900">
           {/* Col 1 & 2: Brand & Social Channels */}
@@ -72,10 +89,10 @@ export function Footer({ onOpenAdmin }: FooterProps) {
           <div className="space-y-3">
             <h4 className="text-xs uppercase tracking-wider text-white font-bold">Navegação</h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#hero-section" className="hover:text-amber-400 transition-colors">Início</a></li>
-              <li><a href="#portfolio" className="hover:text-amber-400 transition-colors">Portfólio em Vídeo</a></li>
-              <li><a href="#servicos" className="hover:text-amber-400 transition-colors">Serviços & Especialidades</a></li>
-              <li><a href="#contato" className="hover:text-amber-400 transition-colors">Solicitar Orçamento</a></li>
+              <li><a href="#hero-section" onClick={(e) => handleFooterNav(e, '#hero-section')} className="hover:text-amber-400 transition-colors cursor-pointer">Início</a></li>
+              <li><a href="#portfolio" onClick={(e) => handleFooterNav(e, '#portfolio')} className="hover:text-amber-400 transition-colors cursor-pointer">Portfólio em Vídeo</a></li>
+              <li><a href="#servicos" onClick={(e) => handleFooterNav(e, '#servicos')} className="hover:text-amber-400 transition-colors cursor-pointer">Serviços & Especialidades</a></li>
+              <li><a href="#contato" onClick={(e) => handleFooterNav(e, '#contato')} className="hover:text-amber-400 transition-colors cursor-pointer">Solicitar Orçamento</a></li>
             </ul>
           </div>
 

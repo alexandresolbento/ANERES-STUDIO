@@ -26,7 +26,7 @@ export function Services({ onSelectServiceToQuote }: ServicesProps) {
   };
 
   return (
-    <section id="servicos" className="py-20 md:py-28 relative bg-zinc-950 border-t border-zinc-900 overflow-hidden">
+    <section id="servicos" className="py-20 md:py-28 relative bg-zinc-950 border-t border-zinc-900 overflow-hidden w-full max-w-full">
       {/* Subtle ANERES Studio Brand Watermark Elements */}
       <AneresWatermark
         position="center"

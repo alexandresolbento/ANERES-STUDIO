@@ -112,10 +112,10 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
   };
 
   return (
-    <section id="contato" className="py-16 md:py-24 relative bg-zinc-950 border-t border-zinc-900 overflow-hidden">
+    <section id="contato" className="py-16 md:py-24 relative bg-zinc-950 border-t border-zinc-900 overflow-hidden w-full max-w-full">
       {/* Background ambience */}
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-80 h-80 bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-96 h-96 bg-amber-500/5 rounded-full blur-[100px] pointer-events-none transform-gpu" />
+      <div className="absolute bottom-10 left-10 w-80 h-80 bg-emerald-500/5 rounded-full blur-[90px] pointer-events-none transform-gpu" />
 
       {/* Subtle brand watermark */}
       <AneresWatermark

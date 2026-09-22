@@ -15,22 +15,11 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
   return (
     <section
       id="hero-section"
-      className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
+      className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden w-full max-w-full"
     >
-      {/* Background ambient lighting with subtle breathing animation */}
-      <motion.div
-        animate={{
-          scale: [1, 1.08, 1],
-          opacity: [0.12, 0.18, 0.12],
-        }}
-        transition={{
-          duration: 9,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[450px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10"
-      />
-      <div className="absolute top-1/3 right-10 w-[350px] h-[350px] bg-rose-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+      {/* Background ambient lighting - static hardware accelerated to prevent scroll stutter */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[800px] h-[300px] sm:h-[400px] bg-amber-500/10 rounded-full blur-[100px] pointer-events-none -z-10 transform-gpu" />
+      <div className="absolute top-1/3 right-10 w-[280px] h-[280px] bg-rose-500/5 rounded-full blur-[90px] pointer-events-none -z-10 transform-gpu" />
 
       {/* Decorative grid lines */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#27272a15_1px,transparent_1px),linear-gradient(to_bottom,#27272a15_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
