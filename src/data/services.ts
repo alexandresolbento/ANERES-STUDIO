@@ -17,6 +17,21 @@ export const SERVICES: ServiceItem[] = [
     ]
   },
   {
+    id: 'serv-web-landing',
+    title: 'Criação de Landing Pages & Sites Profissionais',
+    subtitle: 'Páginas de Alta Conversão e Sites Sob Medida para Empresas que Desejam Atrair Clientes',
+    icon: 'Globe',
+    tag: 'Web & Alta Conversão',
+    description: 'Desenvolvemos Landing Pages estratégicas para o seu negócio e sites profissionais para empresas que buscam atrair clientes qualificados, passar máxima credibilidade e converter visitantes em contatos diretos no WhatsApp.',
+    features: [
+      'Landing Pages modernas e persuasivas com foco total em conversão de leads',
+      'Sites profissionais completos e institucionais para empresas de todos os portes',
+      'Design responsivo impecável com carregamento ultra-rápido em smartphones e PCs',
+      'Integração direta com botões de WhatsApp, formulários de cotação e redes sociais',
+      'Otimização para o Google (SEO) para atrair clientes que procuram seus serviços na web'
+    ]
+  },
+  {
     id: 'serv-performance',
     title: 'Divulgação Digital & Gestão de Redes',
     subtitle: 'Presença Online Consciente e Anúncios Locais sem Desperdício de Verba',

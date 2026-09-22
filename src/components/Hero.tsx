@@ -1,4 +1,5 @@
-import { ArrowRight, Play, CheckCircle2, Sparkles, Youtube, MessageCircle } from 'lucide-react';
+import { ArrowRight, Play, CheckCircle2, Sparkles, Youtube, MessageCircle, Globe, MonitorSmartphone } from 'lucide-react';
+import { motion } from 'motion/react';
 import { CLIENT_LOGOS } from '../data/services';
 import { AneresLogo } from './AneresLogo';
 import { AneresWatermark } from './AneresWatermark';
@@ -9,15 +10,26 @@ interface HeroProps {
 
 export function Hero({ onOpenVideoReel }: HeroProps) {
   const whatsappUrl =
-    'https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20minha%20empresa.';
+    'https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20minha%20empresa%20(V%C3%ADdeos%2C%20Landing%20Page%20ou%20Site).';
 
   return (
     <section
       id="hero-section"
       className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
     >
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[450px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+      {/* Background ambient lighting with subtle breathing animation */}
+      <motion.div
+        animate={{
+          scale: [1, 1.08, 1],
+          opacity: [0.12, 0.18, 0.12],
+        }}
+        transition={{
+          duration: 9,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[350px] sm:h-[450px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10"
+      />
       <div className="absolute top-1/3 right-10 w-[350px] h-[350px] bg-rose-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
       {/* Decorative grid lines */}
@@ -40,48 +52,86 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Top Prominent Brand Lockup */}
-        <div className="flex justify-center mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col items-center justify-center mb-7"
+        >
           <AneresLogo variant="badge" size="md" />
-        </div>
+
+          {/* New highlight pill for Landing Pages & Sites */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="mt-3.5 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-semibold shadow-sm"
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Landing Pages de Alta Conversão • Sites Profissionais • Vídeos em 4K</span>
+          </motion.div>
+        </motion.div>
 
         {/* Main Headline */}
         <div className="text-center max-w-4xl mx-auto">
-          <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.15]">
-            Produção Audiovisual e Soluções Digitais com{' '}
+          <motion.h1
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="font-heading text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.15]"
+          >
+            Produção Audiovisual, Landing Pages e Sites Profissionais com{' '}
             <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 bg-clip-text text-transparent">
               Qualidade Real
             </span>{' '}
-            que se Adequa ao Seu Bolso
-          </h1>
+            para Atrair Clientes
+          </motion.h1>
 
-          <p className="mt-6 text-base sm:text-lg md:text-xl text-zinc-300 font-normal leading-relaxed max-w-2xl mx-auto">
-            Produzimos <strong className="text-zinc-100 font-semibold">vídeos profissionais em 4K</strong>, coberturas de eventos,{' '}
-            <strong className="text-zinc-100 font-semibold">identidade visual e presença digital</strong> com dedicação, transparência e propostas pensadas para a realidade de cada cliente.
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 text-base sm:text-lg md:text-xl text-zinc-300 font-normal leading-relaxed max-w-2xl mx-auto"
+          >
+            Criamos <strong className="text-zinc-100 font-semibold">Landing Pages de alta conversão</strong> para seu negócio,{' '}
+            <strong className="text-zinc-100 font-semibold">sites profissionais para empresas</strong> que desejam atrair clientes e{' '}
+            <strong className="text-zinc-100 font-semibold">vídeos em 4K</strong> com propostas sob medida para sua realidade.
+          </motion.p>
 
-          {/* High-Impact Client Attraction CTAs */}
-          <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-            <a
+          {/* High-Impact Client Attraction CTAs with spring animation */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.34, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
+          >
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
               href="#contato"
               id="hero-request-quote-btn"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 text-sm sm:text-base font-extrabold text-zinc-950 bg-amber-400 hover:bg-amber-300 rounded-xl shadow-xl shadow-amber-500/25 hover:shadow-amber-500/35 transition-all hover:scale-105 group cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 text-sm sm:text-base font-extrabold text-zinc-950 bg-amber-400 hover:bg-amber-300 rounded-xl shadow-xl shadow-amber-500/25 hover:shadow-amber-500/35 transition-all group cursor-pointer"
             >
               <span>Solicitar Orçamento Grátis</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
+            </motion.a>
 
-            <a
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               id="hero-whatsapp-direct-btn"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 text-sm font-bold text-zinc-950 bg-emerald-500 hover:bg-emerald-400 rounded-xl shadow-lg shadow-emerald-500/20 hover:scale-105 transition-all group cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 text-sm font-bold text-zinc-950 bg-emerald-500 hover:bg-emerald-400 rounded-xl shadow-lg shadow-emerald-500/20 transition-all group cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 fill-current" />
               <span>Chamar no WhatsApp</span>
-            </a>
+            </motion.a>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
               type="button"
               id="hero-watch-reel-btn"
               onClick={onOpenVideoReel}
@@ -91,36 +141,48 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
                 <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
               </div>
               <span>Assistir Showreel</span>
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
 
           {/* Quick trust proofs */}
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-zinc-400">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.45 }}
+            className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-zinc-400"
+          >
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
-              Preços justos e transparentes
+              Landing pages com foco em conversão
             </span>
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
-              Atendimento atencioso e próximo
+              Sites responsivos e velozes
             </span>
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
-              Qualidade e pontualidade na entrega
+              Vídeos em 4K e propostas transparentes
             </span>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Clients Ticker */}
-        <div className="mt-14 pt-8 border-t border-zinc-900 text-center">
+        {/* Clients Ticker with subtle stagger on view */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mt-14 pt-8 border-t border-zinc-900 text-center"
+        >
           <p className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-6">
             Empresas, Projetos e Marcas que Confiam no ANERES Studio
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-6xl mx-auto">
             {CLIENT_LOGOS.map((brand, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-amber-400/40 text-left transition-all hover:bg-zinc-900/90 group flex flex-col justify-between"
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                className="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-amber-400/40 text-left transition-all hover:bg-zinc-900/90 group flex flex-col justify-between cursor-default"
               >
                 <div className="flex items-start gap-1.5 mb-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0 group-hover:scale-125 transition-transform" />
@@ -131,10 +193,10 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
                 <span className="text-[10px] text-zinc-400 pl-3 block">
                   {brand.category}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

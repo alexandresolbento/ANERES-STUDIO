@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Play, ExternalLink, Youtube, Film, Eye, Clock, MonitorPlay, MessageCircle, Sparkles, ArrowRight } from 'lucide-react';
+import { motion } from 'motion/react';
 import { FEATURED_VIDEOS } from '../data/videos';
 import { VideoWork } from '../types';
 import { AneresLogo } from './AneresLogo';
@@ -48,7 +49,13 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-zinc-800/80">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-zinc-800/80"
+        >
           <div>
             <div className="flex flex-wrap items-center gap-3 mb-3">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-red-950/40 border border-red-500/20 text-xs font-semibold text-red-400">
@@ -83,10 +90,16 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Official Channel Announcement Card */}
-        <div className="mt-8 p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-red-950/50 via-zinc-900/90 to-zinc-950 border border-red-500/30 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.55 }}
+          className="mt-8 p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-red-950/50 via-zinc-900/90 to-zinc-950 border border-red-500/30 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-5"
+        >
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
             <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-red-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-red-600/30">
               <Youtube className="w-6 h-6 sm:w-8 sm:h-8 fill-current" />
@@ -118,17 +131,21 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
             <span>Acessar @ANERESSTUDIO</span>
             <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </a>
-        </div>
+        </motion.div>
 
         {/* Video Screens Grid */}
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-          {filteredVideos.map((video) => {
+          {filteredVideos.map((video, index) => {
             const isPlayingInline = activeInlineVideoId === video.id;
 
             return (
-              <div
+              <motion.div
                 key={video.id}
                 id={`video-screen-card-${video.id}`}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: (index % 2) * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="group relative rounded-2xl bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700/80 overflow-hidden shadow-2xl transition-all flex flex-col"
               >
                 {/* Screen Monitor Bezel Header */}
@@ -270,46 +287,56 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
                     </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
 
         {/* Lead Attraction Banner After Portfolio */}
-        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-zinc-900/90 border border-amber-400/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.6 }}
+          className="mt-14 p-6 sm:p-8 rounded-2xl bg-zinc-900/90 border border-amber-400/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden"
+        >
           <div className="text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-xs font-bold text-amber-400 mb-2">
               <Sparkles className="w-3 h-3 fill-current" />
               <span>Gostou do estilo das produções?</span>
             </div>
             <h3 className="font-heading text-xl sm:text-2xl font-bold text-white">
-              Sua Empresa Merece um Vídeo com essa Mesma Qualidade
+              Sua Empresa Merece Vídeos e Sites com essa Mesma Qualidade
             </h3>
             <p className="mt-1 text-xs sm:text-sm text-zinc-300 max-w-xl">
-              Criamos roteiros sob medida, gravações em 4K e formatos prontos para redes sociais, anúncios ou TV.
+              Produção audiovisual em 4K, Landing Pages e sites profissionais pensados sob medida para atrair clientes reais.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
-            <a
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
               href="https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostei%20dos%20v%C3%ADdeos%20da%20ANERES%20Studio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20empresa."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs sm:text-sm transition-all shadow-md hover:scale-105 cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 fill-current" />
               <span>Pedir Orçamento no WhatsApp</span>
-            </a>
+            </motion.a>
 
-            <a
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
               href="#contato"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-zinc-950 font-bold text-xs sm:text-sm transition-all shadow-md hover:scale-105 cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-zinc-950 font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer"
             >
               <span>Ver Valores & Proposta</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

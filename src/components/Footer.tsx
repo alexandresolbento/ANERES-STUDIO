@@ -20,7 +20,7 @@ export function Footer({ onOpenAdmin }: FooterProps) {
               <AneresLogo variant="horizontal" size="lg" />
             </div>
             <p className="text-zinc-400 max-w-sm text-xs sm:text-sm leading-relaxed">
-              ANERES Studio — Produção audiovisual em 4K, comerciais de TV e redes sociais, cobertura de eventos e soluções sob medida para destacar sua marca.
+              ANERES Studio — Produção audiovisual em 4K, criação de Landing Pages de alta conversão, sites profissionais para empresas, comerciais e soluções sob medida para atrair clientes.
             </p>
 
             {/* Social Icons Quick Row */}
@@ -30,12 +30,12 @@ export function Footer({ onOpenAdmin }: FooterProps) {
               </span>
               <div className="flex flex-wrap items-center gap-2.5">
                 <a
-                  href="https://www.instagram.com/aneresstudio"
+                  href="https://www.instagram.com/aneresstudio_/"
                   target="_blank"
                   rel="noopener noreferrer"
                   id="footer-instagram-btn"
                   className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-zinc-900/90 border border-zinc-800 hover:border-pink-500/50 hover:bg-zinc-900 text-zinc-300 hover:text-pink-400 transition-all text-xs font-semibold group"
-                  aria-label="Instagram @aneresstudio"
+                  aria-label="Instagram @aneresstudio_"
                 >
                   <Instagram className="w-4 h-4 text-pink-400 group-hover:scale-110 transition-transform" />
                   <span>Instagram</span>
@@ -85,13 +85,13 @@ export function Footer({ onOpenAdmin }: FooterProps) {
             <ul className="space-y-2 text-xs">
               <li>
                 <a
-                  href="https://www.instagram.com/aneresstudio"
+                  href="https://www.instagram.com/aneresstudio_/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-zinc-300 hover:text-pink-400 transition-colors"
                 >
                   <Instagram className="w-3.5 h-3.5 text-pink-400 shrink-0" />
-                  <span>@aneresstudio</span>
+                  <span>@aneresstudio_</span>
                 </a>
               </li>
               <li>

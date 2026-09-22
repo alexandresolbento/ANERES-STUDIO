@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { CheckCircle2, Phone, Mail, MapPin, Clock, ArrowRight, Sparkles, MessageCircle, ShieldCheck, Zap } from 'lucide-react';
+import { CheckCircle2, Phone, Mail, MapPin, Clock, ArrowRight, Sparkles, MessageCircle, ShieldCheck, Zap, Instagram, Globe } from 'lucide-react';
+import { motion } from 'motion/react';
 import { ContactFormData } from '../types';
 import { saveQuoteToDatabase, getAccessToken, updateQuoteStatusInDatabase } from '../firebase';
 import { sendQuoteEmailViaGmail } from '../services/gmail';
@@ -14,7 +15,7 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     phone: '',
-    service: prefilledService || 'Vídeo Comercial ou Institucional',
+    service: prefilledService || '🚀 Criação de Landing Page para meu Negócio',
     email: '',
     message: '',
   });
@@ -29,6 +30,8 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
   }, [prefilledService]);
 
   const serviceOptions = [
+    { id: 'landing', label: '🚀 Criação de Landing Page para meu Negócio' },
+    { id: 'site', label: '🌐 Site Profissional para Empresa' },
     { id: 'comercial', label: '📹 Vídeo Comercial ou Institucional' },
     { id: 'evento', label: '🎉 Cobertura de Evento ou Celebração' },
     { id: 'reels', label: '📱 Vídeos para Redes Sociais & Reels' },
@@ -126,7 +129,13 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Title */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto mb-12"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/25 text-xs font-semibold text-amber-400 mb-4 shadow-sm">
             <Zap className="w-3.5 h-3.5 fill-current" />
             <span>Orçamento Rápido & Sem Compromisso</span>
@@ -135,14 +144,20 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
             Solicite Seu Orçamento em Menos de 1 Minuto
           </h2>
           <p className="mt-3 text-sm sm:text-base text-zinc-300">
-            Diga o que você precisa produzir e receba uma proposta clara, rápida e pensada para o seu bolso.
+            Landing Pages de alta conversão, sites profissionais para empresas ou vídeos em 4K. Receba uma proposta clara, ágil e pensada para o seu bolso.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-5xl mx-auto">
           
           {/* Left Column: Direct WhatsApp & Trust */}
-          <div className="lg:col-span-5 space-y-5">
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 space-y-5"
+          >
             
             {/* Direct WhatsApp High-Conversion Card */}
             <div className="p-6 rounded-2xl bg-gradient-to-br from-emerald-950/50 via-zinc-900 to-zinc-900 border border-emerald-500/30 shadow-xl relative overflow-hidden group">
@@ -213,8 +228,8 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
               </div>
             </div>
 
-            {/* Location & Email info */}
-            <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/60 text-xs text-zinc-400 space-y-2">
+            {/* Location, Email & Instagram info */}
+            <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/60 text-xs text-zinc-400 space-y-2.5">
               <div className="flex items-center gap-2 text-zinc-300">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>Maranhão (Gravações presenciais) & Todo Brasil</span>
@@ -223,12 +238,29 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                 <Mail className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>contato@aneresstudio.com.br</span>
               </div>
+              <a
+                href="https://www.instagram.com/aneresstudio_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                id="contact-instagram-link"
+                className="flex items-center gap-2 text-zinc-300 hover:text-pink-400 transition-colors group"
+                aria-label="Acompanhe o Instagram @aneresstudio_"
+              >
+                <Instagram className="w-4 h-4 text-pink-400 shrink-0 group-hover:scale-110 transition-transform" />
+                <span className="group-hover:underline">Instagram: @aneresstudio_</span>
+              </a>
             </div>
 
-          </div>
+          </motion.div>
 
           {/* Right Column: Ultra-Simple Fast Form */}
-          <div className="lg:col-span-7">
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7"
+          >
             <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/80 border border-zinc-800 shadow-2xl relative">
               
               {/* WhatsApp Direct Header Card */}
@@ -405,7 +437,7 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
               )}
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
 

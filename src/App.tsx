@@ -10,6 +10,7 @@ import { CinemaModal } from './components/CinemaModal';
 import { FloatingQuoteCTA } from './components/FloatingQuoteCTA';
 import { AdminQuotesModal } from './components/AdminQuotesModal';
 import { Footer } from './components/Footer';
+import { AnimatedSection } from './components/AnimatedSection';
 import { AIErrorBoundary } from './components/AIErrorBoundary';
 import { VideoWork } from './types';
 import { initAuth, setCachedAccessToken } from './firebase';
@@ -125,39 +126,51 @@ export default function App() {
       {/* Navigation */}
       <Navbar onOpenVideoReel={handleOpenVideoReel} />
 
-      {/* Main Content Sections with AI Self-Healing Boundary */}
+      {/* Main Content Sections with AI Self-Healing Boundary & Smooth Scroll Transitions */}
       <main className="flex-grow w-full overflow-x-hidden">
         {/* Hero Section */}
-        <AIErrorBoundary fallbackName="Apresentação & Hero">
-          <Hero onOpenVideoReel={handleOpenVideoReel} />
-        </AIErrorBoundary>
+        <AnimatedSection>
+          <AIErrorBoundary fallbackName="Apresentação & Hero">
+            <Hero onOpenVideoReel={handleOpenVideoReel} />
+          </AIErrorBoundary>
+        </AnimatedSection>
 
         {/* Portfólio de Vídeos Oficiais (YouTube) */}
-        <AIErrorBoundary fallbackName="Portfólio em Vídeo">
-          <VideoShowcase onSelectVideoForCinema={handleSelectVideoForCinema} />
-        </AIErrorBoundary>
+        <AnimatedSection>
+          <AIErrorBoundary fallbackName="Portfólio em Vídeo">
+            <VideoShowcase onSelectVideoForCinema={handleSelectVideoForCinema} />
+          </AIErrorBoundary>
+        </AnimatedSection>
 
         {/* Serviços & Especialidades */}
-        <AIErrorBoundary fallbackName="Serviços & Especialidades">
-          <Services onSelectServiceToQuote={handleSelectServiceToQuote} />
-        </AIErrorBoundary>
+        <AnimatedSection>
+          <AIErrorBoundary fallbackName="Serviços & Especialidades">
+            <Services onSelectServiceToQuote={handleSelectServiceToQuote} />
+          </AIErrorBoundary>
+        </AnimatedSection>
 
         {/* Banner de Alta Conversão para Atração de Clientes */}
-        <AIErrorBoundary fallbackName="Chamada de Conversão">
-          <ConversionBanner />
-        </AIErrorBoundary>
+        <AnimatedSection>
+          <AIErrorBoundary fallbackName="Chamada de Conversão">
+            <ConversionBanner />
+          </AIErrorBoundary>
+        </AnimatedSection>
 
         {/* Formulário de Orçamento & Contato */}
-        <AIErrorBoundary fallbackName="Formulário de Orçamentos">
-          <ContactForm prefilledService={prefilledService} />
-        </AIErrorBoundary>
+        <AnimatedSection>
+          <AIErrorBoundary fallbackName="Formulário de Orçamentos">
+            <ContactForm prefilledService={prefilledService} />
+          </AIErrorBoundary>
+        </AnimatedSection>
       </main>
 
       {/* Floating Persistent WhatsApp / Quote CTA */}
       <FloatingQuoteCTA />
 
       {/* Footer */}
-      <Footer onOpenAdmin={() => setIsAdminModalOpen(true)} />
+      <AnimatedSection threshold={0.05}>
+        <Footer onOpenAdmin={() => setIsAdminModalOpen(true)} />
+      </AnimatedSection>
 
       {/* YouTube Cinema Player Modal */}
       <CinemaModal

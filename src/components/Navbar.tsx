@@ -62,13 +62,13 @@ export function Navbar({ onOpenVideoReel }: NavbarProps) {
           {/* Social Icons Group */}
           <div className="flex items-center gap-1 border-r border-zinc-800/80 pr-2 mr-1">
             <a
-              href="https://www.instagram.com/aneresstudio"
+              href="https://www.instagram.com/aneresstudio_/"
               target="_blank"
               rel="noopener noreferrer"
               id="nav-instagram-icon"
               className="p-2 rounded-lg text-zinc-400 hover:text-pink-400 hover:bg-zinc-900 transition-all"
-              title="Instagram @aneresstudio"
-              aria-label="Instagram do ANERES Studio"
+              title="Instagram @aneresstudio_"
+              aria-label="Instagram do ANERES Studio (@aneresstudio_)"
             >
               <Instagram className="w-4 h-4" />
             </a>
@@ -161,12 +161,12 @@ export function Navbar({ onOpenVideoReel }: NavbarProps) {
             </p>
             <div className="grid grid-cols-3 gap-2">
               <a
-                href="https://www.instagram.com/aneresstudio"
+                href="https://www.instagram.com/aneresstudio_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex flex-col items-center justify-center p-2.5 rounded-lg bg-zinc-900/90 border border-zinc-800 hover:border-pink-500/40 text-zinc-300 hover:text-pink-400 transition-colors"
-                aria-label="Instagram @aneresstudio"
+                aria-label="Instagram @aneresstudio_"
               >
                 <Instagram className="w-4 h-4 text-pink-400 mb-1" />
                 <span className="text-[11px] font-medium">Instagram</span>
