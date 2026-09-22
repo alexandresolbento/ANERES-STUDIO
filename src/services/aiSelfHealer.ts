@@ -93,43 +93,51 @@ class AISelfHealer {
     // Window global error handler
     window.addEventListener('error', (event) => {
       // Filter out benign Vite hot reload, network, or extension noise
-      const msg = event.message || '';
+      const msg = (event.message || '').toLowerCase();
       if (
-        msg.includes('ResizeObserver') ||
+        msg.includes('resizeobserver') ||
         msg.includes('websocket') ||
+        msg.includes('fechado sem ter sido aberto') ||
+        msg.includes('closed without being opened') ||
         msg.includes('503') ||
         msg.includes('fetch') ||
         msg.includes('network') ||
         msg.includes('script error')
       ) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
         return;
       }
 
       this.recordAndAutoRepair({
         type: 'RUNTIME_EXCEPTION',
-        errorMessage: msg,
+        errorMessage: event.message || 'Erro em tempo de execução',
         errorStack: event.error?.stack || '',
       });
-    });
+    }, true);
 
     // Unhandled promise rejections
     window.addEventListener('unhandledrejection', (event) => {
-      const reason = event.reason ? String(event.reason) : 'Promise rejected';
+      const reason = (event.reason ? (event.reason.message || String(event.reason)) : '').toLowerCase();
       if (
         reason.includes('websocket') ||
+        reason.includes('fechado sem ter sido aberto') ||
+        reason.includes('closed without being opened') ||
         reason.includes('aborted') ||
         reason.includes('503') ||
-        reason.includes('Failed to fetch') ||
+        reason.includes('failed to fetch') ||
         reason.includes('network')
       ) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
         return;
       }
 
       this.recordAndAutoRepair({
         type: 'UNHANDLED_ASYNC_REJECTION',
-        errorMessage: reason,
+        errorMessage: event.reason ? String(event.reason) : 'Rejeição assíncrona',
       });
-    });
+    }, true);
   }
 
   public async recordAndAutoRepair(data: {
