@@ -21,11 +21,11 @@ export function AneresLogo({
   // Height mappings for different contexts
   const imgHeights = {
     xs: 'h-6 sm:h-7',
-    sm: 'h-8 sm:h-9',
-    md: 'h-11 sm:h-12',
-    lg: 'h-16 sm:h-20',
-    xl: 'h-24 sm:h-28',
-    '2xl': 'h-32 sm:h-36',
+    sm: 'h-7 sm:h-8 md:h-9',
+    md: 'h-9 sm:h-11 md:h-12',
+    lg: 'h-14 sm:h-18 md:h-20',
+    xl: 'h-20 sm:h-24 md:h-28',
+    '2xl': 'h-28 sm:h-32 md:h-36',
   }[size];
 
   const textColor = theme === 'dark' ? 'text-zinc-950' : 'text-white';
@@ -92,7 +92,7 @@ export function AneresLogo({
   if (variant === 'badge') {
     return (
       <div
-        className={`inline-flex items-center gap-3.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-gradient-to-r from-zinc-900/95 via-zinc-900/80 to-zinc-900/95 border border-amber-400/35 shadow-xl shadow-amber-500/10 backdrop-blur-md group hover:border-amber-400/70 transition-all duration-300 ${className}`}
+        className={`inline-flex items-center gap-2.5 sm:gap-3.5 px-3 sm:px-5 py-2 sm:py-3 rounded-2xl bg-gradient-to-r from-zinc-900/95 via-zinc-900/80 to-zinc-900/95 border border-amber-400/35 shadow-xl shadow-amber-500/10 backdrop-blur-md group hover:border-amber-400/70 transition-all duration-300 max-w-full ${className}`}
       >
         <div className="relative shrink-0">
           <div className="absolute inset-0 bg-amber-500/25 blur-lg rounded-full pointer-events-none group-hover:bg-amber-400/40 transition-colors" />
@@ -100,22 +100,22 @@ export function AneresLogo({
             <img
               src={imgSrc}
               alt="ANERES Studio Logo"
-              className="h-11 sm:h-13 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-8 sm:h-11 md:h-13 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               onError={() => setImgSrc('https://i.ibb.co/B7qRF0v/LOGO-ANERES.png')}
             />
           </div>
         </div>
-        <div className="flex flex-col text-left justify-center">
-          <div className="flex items-center gap-2">
-            <span className="font-heading text-sm sm:text-base font-black tracking-[0.16em] uppercase text-white group-hover:text-amber-300 transition-colors">
+        <div className="flex flex-col text-left justify-center min-w-0">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="font-heading text-xs sm:text-sm md:text-base font-black tracking-[0.14em] sm:tracking-[0.16em] uppercase text-white group-hover:text-amber-300 transition-colors truncate">
               ANERES STUDIO
             </span>
-            <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-amber-400/20 text-amber-400 text-[10px] font-bold">
+            <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-amber-400/20 text-amber-400 text-[9px] sm:text-[10px] font-bold shrink-0">
               <Sparkles className="w-2.5 h-2.5" />
               <span>OFICIAL</span>
             </span>
           </div>
-          <span className="text-[10px] sm:text-[11px] text-zinc-300 tracking-wider uppercase font-medium mt-0.5">
+          <span className="text-[9px] sm:text-[10px] md:text-[11px] text-zinc-300 tracking-wider uppercase font-medium mt-0.5 truncate">
             Produções Audiovisuais & Soluções Digitais
           </span>
         </div>

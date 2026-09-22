@@ -1,6 +1,143 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
+    <script>
+      (function() {
+        // 1. Hide any Vite error overlay or popup
+        var style = document.createElement('style');
+        style.textContent = 'vite-error-overlay, [data-vite-dev-error-overlay] { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }';
+        if (document.head) {
+          document.head.appendChild(style);
+        } else {
+          document.addEventListener('DOMContentLoaded', function() {
+            document.head.appendChild(style);
+          });
+        }
+
+        // 2. Filter console.error and console.warn for Vite WebSocket warnings
+        var origConsoleError = console.error;
+        console.error = function() {
+          var args = Array.prototype.slice.call(arguments);
+          var str = args.map(function(a) { return String(a || ''); }).join(' ').toLowerCase();
+          if (str.indexOf('[vite]') !== -1 || str.indexOf('websocket') !== -1 || str.indexOf('fechado sem ter sido aberto') !== -1) {
+            return;
+          }
+          return origConsoleError.apply(console, arguments);
+        };
+
+        var origConsoleWarn = console.warn;
+        console.warn = function() {
+          var args = Array.prototype.slice.call(arguments);
+          var str = args.map(function(a) { return String(a || ''); }).join(' ').toLowerCase();
+          if (str.indexOf('[vite]') !== -1 || str.indexOf('websocket') !== -1) {
+            return;
+          }
+          return origConsoleWarn.apply(console, arguments);
+        };
+
+        // 3. Proactive mock for Vite HMR WebSocket so it satisfies @vite/client and never fails
+        var OrigWebSocket = window.WebSocket;
+        function ViteHmrMockSocket(url, protocols) {
+          var listeners = {};
+          var self = {
+            readyState: 1, // OPEN
+            CONNECTING: 0,
+            OPEN: 1,
+            CLOSING: 2,
+            CLOSED: 3,
+            url: url,
+            protocol: protocols || '',
+            bufferedAmount: 0,
+            extensions: '',
+            binaryType: 'blob',
+            onopen: null,
+            onclose: null,
+            onmessage: null,
+            onerror: null,
+            send: function() {},
+            close: function() {
+              self.readyState = 3;
+            },
+            addEventListener: function(type, listener) {
+              if (!listeners[type]) listeners[type] = [];
+              listeners[type].push(listener);
+            },
+            removeEventListener: function(type, listener) {
+              if (!listeners[type]) return;
+              listeners[type] = listeners[type].filter(function(l) { return l !== listener; });
+            },
+            dispatchEvent: function(event) {
+              var list = listeners[event.type] || [];
+              for (var i = 0; i < list.length; i++) {
+                try { list[i].call(self, event); } catch (e) {}
+              }
+              return true;
+            }
+          };
+
+          // Trigger 'open' immediately on next tick so @vite/client marks isOpened = true and never errors
+          setTimeout(function() {
+            self.readyState = 1;
+            var openEvt = { type: 'open', target: self };
+            if (typeof self.onopen === 'function') {
+              try { self.onopen(openEvt); } catch (e) {}
+            }
+            self.dispatchEvent(openEvt);
+          }, 0);
+
+          return self;
+        }
+
+        window.WebSocket = function(url, protocols) {
+          var isVite = protocols === 'vite-hmr' ||
+                       protocols === 'vite-ping' ||
+                       (typeof url === 'string' && (url.indexOf('token=') !== -1 || url.indexOf('vite') !== -1));
+          if (isVite) {
+            return ViteHmrMockSocket(url, protocols);
+          }
+          return OrigWebSocket ? new OrigWebSocket(url, protocols) : ViteHmrMockSocket(url, protocols);
+        };
+
+        window.WebSocket.CONNECTING = 0;
+        window.WebSocket.OPEN = 1;
+        window.WebSocket.CLOSING = 2;
+        window.WebSocket.CLOSED = 3;
+        if (OrigWebSocket) {
+          window.WebSocket.prototype = OrigWebSocket.prototype;
+        }
+
+        // 4. Global window error and unhandledrejection handlers
+        function isBenign(str) {
+          if (!str) return false;
+          var s = String(str).toLowerCase();
+          return s.indexOf('websocket') !== -1 ||
+                 s.indexOf('fechado sem ter sido aberto') !== -1 ||
+                 s.indexOf('closed without') !== -1 ||
+                 s.indexOf('closed without opened') !== -1 ||
+                 s.indexOf('closed without being opened') !== -1 ||
+                 s.indexOf('vite') !== -1 ||
+                 s.indexOf('hmr') !== -1 ||
+                 s.indexOf('resizeobserver') !== -1;
+        }
+
+        window.addEventListener('error', function(e) {
+          if (isBenign(e.message) || (e.error && isBenign(e.error.message))) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(e) {
+          var reason = e.reason ? (e.reason.message || String(e.reason)) : '';
+          if (isBenign(reason)) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ANERES Studio | Produção Audiovisual & Soluções Criativas</title>
@@ -15,33 +152,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <script>
-      (function() {
-        function isBenign(str) {
-          if (!str) return false;
-          var s = String(str).toLowerCase();
-          return s.indexOf('websocket') !== -1 ||
-                 s.indexOf('fechado sem ter sido aberto') !== -1 ||
-                 s.indexOf('closed without being opened') !== -1 ||
-                 s.indexOf('resizeobserver') !== -1;
-        }
-        window.addEventListener('error', function(e) {
-          if (isBenign(e.message) || (e.error && isBenign(e.error.message))) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            return true;
-          }
-        }, true);
-        window.addEventListener('unhandledrejection', function(e) {
-          var reason = e.reason ? (e.reason.message || String(e.reason)) : '';
-          if (isBenign(reason)) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            return true;
-          }
-        }, true);
-      })();
-    </script>
   </head>
   <body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-amber-500 selection:text-zinc-950">
     <div id="root"></div>

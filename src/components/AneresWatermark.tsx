@@ -20,19 +20,19 @@ export function AneresWatermark({
   const [imgSrc, setImgSrc] = useState('/aneres-logo.png');
 
   const sizeClasses = {
-    sm: 'w-[280px] sm:w-[360px] max-w-[80vw]',
-    md: 'w-[360px] sm:w-[480px] max-w-[85vw]',
-    lg: 'w-[450px] sm:w-[620px] lg:w-[720px] max-w-[90vw]',
-    xl: 'w-[520px] sm:w-[720px] lg:w-[860px] max-w-[92vw]',
-    '2xl': 'w-[600px] sm:w-[860px] lg:w-[1050px] max-w-[95vw]',
+    sm: 'w-[180px] sm:w-[260px] md:w-[320px] max-w-[65vw]',
+    md: 'w-[240px] sm:w-[340px] md:w-[440px] max-w-[75vw]',
+    lg: 'w-[300px] sm:w-[440px] md:w-[580px] lg:w-[680px] max-w-[80vw]',
+    xl: 'w-[340px] sm:w-[520px] md:w-[680px] lg:w-[820px] max-w-[85vw]',
+    '2xl': 'w-[380px] sm:w-[620px] md:w-[780px] lg:w-[940px] max-w-[90vw]',
   }[size];
 
   const positionClasses = {
-    'top-right': 'top-6 -right-16 sm:top-10 sm:-right-20 lg:top-12 lg:-right-24',
-    'top-left': 'top-6 -left-16 sm:top-10 sm:-left-20 lg:top-12 lg:-left-24',
+    'top-right': '-top-4 -right-8 sm:top-6 sm:-right-14 lg:top-10 lg:-right-16',
+    'top-left': '-top-4 -left-8 sm:top-6 sm:-left-14 lg:top-10 lg:-left-16',
     'center': 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
-    'bottom-right': 'bottom-6 -right-16 sm:bottom-10 sm:-right-20 lg:bottom-12 lg:-right-24',
-    'bottom-left': 'bottom-6 -left-16 sm:bottom-10 sm:-left-20 lg:bottom-12 lg:-left-24',
+    'bottom-right': '-bottom-4 -right-8 sm:bottom-6 sm:-right-14 lg:bottom-10 lg:-right-16',
+    'bottom-left': '-bottom-4 -left-8 sm:bottom-6 sm:-left-14 lg:bottom-10 lg:-left-16',
     'custom': '',
   }[position];
 

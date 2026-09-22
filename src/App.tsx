@@ -121,12 +121,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col selection:bg-amber-400 selection:text-zinc-950 relative">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col selection:bg-amber-400 selection:text-zinc-950 relative overflow-x-hidden w-full max-w-full">
       {/* Navigation */}
       <Navbar onOpenVideoReel={handleOpenVideoReel} />
 
       {/* Main Content Sections with AI Self-Healing Boundary */}
-      <main className="flex-grow">
+      <main className="flex-grow w-full overflow-x-hidden">
         {/* Hero Section */}
         <AIErrorBoundary fallbackName="Apresentação & Hero">
           <Hero onOpenVideoReel={handleOpenVideoReel} />

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Send, CheckCircle2, Phone, Mail, MapPin, Clock, ArrowRight, Sparkles, MessageCircle, ShieldCheck, Zap } from 'lucide-react';
+import { CheckCircle2, Phone, Mail, MapPin, Clock, ArrowRight, Sparkles, MessageCircle, ShieldCheck, Zap } from 'lucide-react';
 import { ContactFormData } from '../types';
 import { saveQuoteToDatabase, getAccessToken, updateQuoteStatusInDatabase } from '../firebase';
-import { sendQuoteEmailViaGmail, ADMIN_EMAIL } from '../services/gmail';
+import { sendQuoteEmailViaGmail } from '../services/gmail';
 import { AneresLogo } from './AneresLogo';
 import { AneresWatermark } from './AneresWatermark';
 
@@ -11,7 +11,6 @@ interface ContactFormProps {
 }
 
 export function ContactForm({ prefilledService }: ContactFormProps) {
-  const [activeTab, setActiveTab] = useState<'whatsapp' | 'site'>('whatsapp');
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     phone: '',
@@ -45,7 +44,8 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
     const nome = formData.name.trim() || 'Cliente';
     const servico = formData.service;
     const detalhes = formData.message?.trim() ? ` Detalhes: ${formData.message.trim()}` : '';
-    const texto = `Olá! Meu nome é *${nome}* e gostaria de solicitar um orçamento para *${servico}*.${detalhes}`;
+    const telefone = formData.phone?.trim() ? ` | Tel: ${formData.phone.trim()}` : '';
+    const texto = `Olá! Meu nome é *${nome}*${telefone} e gostaria de solicitar um orçamento para *${servico}*.${detalhes}`;
     return `https://api.whatsapp.com/send?phone=5599999331639&text=${encodeURIComponent(texto)}`;
   };
 
@@ -58,6 +58,8 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
       return;
     }
 
+    setStatus('submitting');
+
     try {
       // Background persistent storage
       const record = await saveQuoteToDatabase({
@@ -66,7 +68,7 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
         service: formData.service,
         email: formData.email,
         message: formData.message,
-        source: 'whatsapp_redirect',
+        source: 'whatsapp_direct',
       });
 
       // Background email notification
@@ -91,52 +93,8 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-  };
 
-  const handleSendSite = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrorMessage('');
-
-    if (!formData.name.trim() || !formData.phone.trim()) {
-      setErrorMessage('Por favor, preencha seu nome e telefone/WhatsApp.');
-      return;
-    }
-
-    setStatus('submitting');
-
-    try {
-      // 1. Silent database persistence
-      const record = await saveQuoteToDatabase({
-        name: formData.name,
-        phone: formData.phone,
-        service: formData.service,
-        email: formData.email,
-        message: formData.message,
-        source: 'site_form',
-      });
-
-      // 2. Silent email notification
-      const token = getAccessToken();
-      if (token) {
-        sendQuoteEmailViaGmail(record, token, {
-          customRecipient: ADMIN_EMAIL,
-          includeClientCc: Boolean(formData.email),
-        }).then((gmailRes) => {
-          if (gmailRes.success) {
-            updateQuoteStatusInDatabase(record.id, {
-              emailSent: true,
-              emailSentAt: new Date().toISOString(),
-            });
-          }
-        }).catch((err) => console.warn('Notification dispatch:', err));
-      }
-
-      setStatus('success');
-    } catch (err) {
-      console.error('Submission error:', err);
-      setErrorMessage('Ocorreu um erro temporário. Por favor tente enviar pelo WhatsApp.');
-      setStatus('idle');
-    }
+    setStatus('success');
   };
 
   const handleReset = () => {
@@ -273,34 +231,24 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
           <div className="lg:col-span-7">
             <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/80 border border-zinc-800 shadow-2xl relative">
               
-              {/* Tab Selector: Fast WhatsApp vs Form */}
-              <div className="flex items-center p-1 rounded-xl bg-zinc-950 border border-zinc-800 mb-6">
-                <button
-                  type="button"
-                  id="tab-select-whatsapp"
-                  onClick={() => setActiveTab('whatsapp')}
-                  className={`flex-1 py-2.5 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 ${
-                    activeTab === 'whatsapp'
-                      ? 'bg-emerald-500 text-zinc-950 shadow-md'
-                      : 'text-zinc-400 hover:text-white'
-                  }`}
-                >
-                  <MessageCircle className="w-4 h-4 fill-current" />
-                  <span>Via WhatsApp (Mais Rápido)</span>
-                </button>
-                <button
-                  type="button"
-                  id="tab-select-site"
-                  onClick={() => setActiveTab('site')}
-                  className={`flex-1 py-2.5 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 ${
-                    activeTab === 'site'
-                      ? 'bg-amber-400 text-zinc-950 shadow-md'
-                      : 'text-zinc-400 hover:text-white'
-                  }`}
-                >
-                  <Mail className="w-4 h-4" />
-                  <span>Pelo Site</span>
-                </button>
+              {/* WhatsApp Direct Header Card */}
+              <div className="flex items-center gap-3.5 p-4 rounded-xl bg-gradient-to-r from-emerald-950/60 via-zinc-950/80 to-emerald-950/60 border border-emerald-500/30 mb-6">
+                <div className="w-11 h-11 rounded-xl bg-emerald-500 flex items-center justify-center text-zinc-950 shrink-0 shadow-lg shadow-emerald-500/20">
+                  <MessageCircle className="w-6 h-6 fill-current" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-sm sm:text-base font-bold text-white">
+                      Orçamento Direto no WhatsApp
+                    </h3>
+                    <span className="text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                      Online
+                    </span>
+                  </div>
+                  <p className="text-xs text-zinc-300 mt-0.5">
+                    Atendimento imediato com a equipe • (99) 99933-1639
+                  </p>
+                </div>
               </div>
 
               {status === 'success' ? (
@@ -311,10 +259,10 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                   </div>
                   <div>
                     <h3 className="font-heading text-2xl font-bold text-white">
-                      Pedido Enviado com Sucesso!
+                      Conversa Pronta no WhatsApp!
                     </h3>
                     <p className="mt-2 text-sm text-zinc-300 max-w-sm mx-auto">
-                      Obrigado, <strong className="text-white">{formData.name}</strong>! Recebemos sua solicitação e entraremos em contato em até 2 horas úteis pelo WhatsApp.
+                      Olá, <strong className="text-white">{formData.name}</strong>! Se a janela do WhatsApp não tiver aberto automaticamente, clique no botão abaixo para nos enviar sua mensagem agora:
                     </p>
                   </div>
 
@@ -336,13 +284,13 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                       onClick={handleReset}
                       className="text-xs text-zinc-400 hover:text-white underline cursor-pointer"
                     >
-                      Enviar outro orçamento
+                      Montar outro orçamento
                     </button>
                   </div>
                 </div>
               ) : (
-                /* Simplified Form */
-                <form onSubmit={activeTab === 'whatsapp' ? handleSendWhatsapp : handleSendSite} className="space-y-4">
+                /* WhatsApp Quote Form */
+                <form onSubmit={handleSendWhatsapp} className="space-y-4">
                   
                   {errorMessage && (
                     <div className="p-3 rounded-xl bg-red-950/60 border border-red-500/40 text-xs text-red-200">
@@ -363,24 +311,23 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Ex: Alexandre Bento"
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
                     />
                   </div>
 
                   {/* 2. WhatsApp / Telefone */}
                   <div>
                     <label htmlFor="quote-phone" className="block text-xs font-semibold text-zinc-200 mb-1.5">
-                      2. Seu WhatsApp com DDD *
+                      2. Seu Telefone / WhatsApp com DDD
                     </label>
                     <input
                       type="tel"
                       id="quote-phone"
                       name="phone"
-                      required={activeTab === 'site'}
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="(99) 99999-9999"
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
                     />
                   </div>
 
@@ -394,7 +341,7 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-sm text-white focus:outline-none focus:border-amber-400"
+                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-base sm:text-sm text-white focus:outline-none focus:border-amber-400"
                     >
                       {serviceOptions.map((opt) => (
                         <option key={opt.id} value={opt.label} className="bg-zinc-950 text-white">
@@ -416,7 +363,7 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                       value={formData.email || ''}
                       onChange={handleChange}
                       placeholder="seu.email@exemplo.com"
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
                     />
                   </div>
 
@@ -432,33 +379,22 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                       value={formData.message || ''}
                       onChange={handleChange}
                       placeholder="Ex: Gravação no sábado / Projeto para YouTube e Reels"
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
                     />
                   </div>
 
                   {/* Submit Button */}
                   <div className="pt-2">
-                    {activeTab === 'whatsapp' ? (
-                      <button
-                        type="submit"
-                        id="submit-whatsapp-quote-btn"
-                        className="w-full py-4 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-black text-sm sm:text-base flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-emerald-500/20 hover:scale-[1.01] cursor-pointer"
-                      >
-                        <MessageCircle className="w-5 h-5 fill-current" />
-                        <span>Receber Orçamento no WhatsApp Agora</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
-                    ) : (
-                      <button
-                        type="submit"
-                        id="submit-site-quote-btn"
-                        disabled={status === 'submitting'}
-                        className="w-full py-4 px-6 rounded-xl bg-amber-400 hover:bg-amber-300 disabled:opacity-50 text-zinc-950 font-black text-sm sm:text-base flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-amber-500/20 hover:scale-[1.01] cursor-pointer"
-                      >
-                        <Send className="w-4 h-4" />
-                        <span>{status === 'submitting' ? 'Enviando Pedido...' : 'Enviar Pedido de Orçamento'}</span>
-                      </button>
-                    )}
+                    <button
+                      type="submit"
+                      id="submit-whatsapp-quote-btn"
+                      disabled={status === 'submitting'}
+                      className="w-full py-4 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-black text-sm sm:text-base flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-emerald-500/20 hover:scale-[1.01] cursor-pointer"
+                    >
+                      <MessageCircle className="w-5 h-5 fill-current" />
+                      <span>{status === 'submitting' ? 'Preparando Orçamento...' : 'Receber Orçamento no WhatsApp Agora'}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
                   </div>
 
                   <p className="text-center text-[11px] text-zinc-500 pt-1">

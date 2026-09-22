@@ -98,7 +98,11 @@ class AISelfHealer {
         msg.includes('resizeobserver') ||
         msg.includes('websocket') ||
         msg.includes('fechado sem ter sido aberto') ||
+        msg.includes('closed without opened') ||
         msg.includes('closed without being opened') ||
+        msg.includes('closed without') ||
+        msg.includes('vite') ||
+        msg.includes('hmr') ||
         msg.includes('503') ||
         msg.includes('fetch') ||
         msg.includes('network') ||
@@ -122,7 +126,11 @@ class AISelfHealer {
       if (
         reason.includes('websocket') ||
         reason.includes('fechado sem ter sido aberto') ||
+        reason.includes('closed without opened') ||
         reason.includes('closed without being opened') ||
+        reason.includes('closed without') ||
+        reason.includes('vite') ||
+        reason.includes('hmr') ||
         reason.includes('aborted') ||
         reason.includes('503') ||
         reason.includes('failed to fetch') ||

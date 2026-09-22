@@ -56,7 +56,7 @@ export function FloatingQuoteCTA() {
           rel="noopener noreferrer"
           id="floating-whatsapp-btn"
           aria-label="Conversar no WhatsApp com ANERES Studio"
-          className="relative inline-flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-zinc-950 shadow-2xl shadow-emerald-500/40 hover:scale-110 transition-all duration-300 group cursor-pointer"
+          className="relative inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-zinc-950 shadow-2xl shadow-emerald-500/40 hover:scale-110 transition-all duration-300 group cursor-pointer"
         >
           <span className="absolute -top-1 -right-1 flex h-4 w-4">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
@@ -64,7 +64,7 @@ export function FloatingQuoteCTA() {
               1
             </span>
           </span>
-          <MessageCircle className="w-7 h-7 fill-current text-zinc-950 group-hover:scale-110 transition-transform" />
+          <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7 fill-current text-zinc-950 group-hover:scale-110 transition-transform" />
         </a>
       </div>
     </div>

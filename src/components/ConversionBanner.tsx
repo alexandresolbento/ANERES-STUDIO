@@ -28,7 +28,7 @@ export function ConversionBanner() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="rounded-3xl p-8 sm:p-12 bg-gradient-to-r from-zinc-900/90 via-zinc-950/95 to-zinc-900/90 border border-amber-400/30 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className="rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 bg-gradient-to-r from-zinc-900/90 via-zinc-950/95 to-zinc-900/90 border border-amber-400/30 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
           
           <div className="max-w-2xl text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-xs font-bold text-amber-400 mb-4">
@@ -36,25 +36,25 @@ export function ConversionBanner() {
               <span>Oportunidade para o Seu Negócio</span>
             </div>
 
-            <h3 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
+            <h3 className="font-heading text-xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
               Pronto para Atrair Mais Clientes com Vídeos Profissionais?
             </h3>
 
-            <p className="mt-3 text-sm sm:text-base text-zinc-300 leading-relaxed">
+            <p className="mt-3 text-xs sm:text-base text-zinc-300 leading-relaxed">
               Empresas que utilizam vídeos de alta qualidade vendem mais e geram autoridade imediata. Solicite um orçamento sem compromisso e comece seu projeto ainda esta semana.
             </p>
 
-            <div className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-zinc-300">
+            <div className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 text-xs font-semibold text-zinc-300">
               <span className="flex items-center gap-1.5 text-amber-300">
-                <CheckCircle2 className="w-4 h-4 text-amber-400" />
+                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
                 Orçamento gratuito e rápido
               </span>
               <span className="flex items-center gap-1.5 text-amber-300">
-                <CheckCircle2 className="w-4 h-4 text-amber-400" />
+                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
                 Valores acessíveis para seu porte
               </span>
               <span className="flex items-center gap-1.5 text-amber-300">
-                <CheckCircle2 className="w-4 h-4 text-amber-400" />
+                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
                 Gravação em 4K Cinema
               </span>
             </div>
@@ -67,7 +67,7 @@ export function ConversionBanner() {
               target="_blank"
               rel="noopener noreferrer"
               id="conversion-banner-whatsapp-btn"
-              className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-black text-sm transition-all shadow-xl shadow-emerald-500/25 hover:scale-105 cursor-pointer text-center"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-black text-sm transition-all shadow-xl shadow-emerald-500/25 hover:scale-105 cursor-pointer text-center"
             >
               <MessageCircle className="w-5 h-5 fill-current" />
               <span>Pedir Orçamento no WhatsApp</span>
@@ -77,7 +77,7 @@ export function ConversionBanner() {
               type="button"
               onClick={scrollToContact}
               id="conversion-banner-form-btn"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-zinc-950 font-bold text-sm transition-all shadow-md hover:scale-105 cursor-pointer text-center"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-zinc-950 font-bold text-sm transition-all shadow-md hover:scale-105 cursor-pointer text-center"
             >
               <span>Preencher Pedido Rápido</span>
               <ArrowRight className="w-4 h-4" />

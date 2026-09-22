@@ -66,14 +66,14 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {categories.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 id={`filter-video-${cat.toLowerCase().replace(/\s+/g, '-')}`}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                className={`px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                   selectedCategory === cat
                     ? 'bg-amber-400 text-zinc-950 shadow-md shadow-amber-400/20'
                     : 'bg-zinc-900 text-zinc-300 hover:text-white hover:bg-zinc-800 border border-zinc-800'
@@ -86,10 +86,10 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
         </div>
 
         {/* Official Channel Announcement Card */}
-        <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-red-950/50 via-zinc-900/90 to-zinc-950 border border-red-500/30 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-red-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-red-600/30">
-              <Youtube className="w-8 h-8 fill-current" />
+        <div className="mt-8 p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-red-950/50 via-zinc-900/90 to-zinc-950 border border-red-500/30 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-red-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-red-600/30">
+              <Youtube className="w-6 h-6 sm:w-8 sm:h-8 fill-current" />
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -98,7 +98,7 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
                 </span>
                 <span className="text-xs text-zinc-400">@ANERESSTUDIO</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-heading font-bold text-white mt-1">
+              <h3 className="text-base sm:text-xl font-heading font-bold text-white mt-1">
                 Acompanhe o Portfólio Completo da ANERES Studio
               </h3>
               <p className="text-xs sm:text-sm text-zinc-300 mt-0.5 max-w-2xl">
