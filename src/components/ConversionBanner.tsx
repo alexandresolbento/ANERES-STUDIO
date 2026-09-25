@@ -2,10 +2,12 @@ import { MessageCircle, ArrowRight, Sparkles, CheckCircle2, Globe, Laptop } from
 import { motion } from 'motion/react';
 import { AneresLogo } from './AneresLogo';
 import { AneresWatermark } from './AneresWatermark';
+import { getWhatsAppUrl, WHATSAPP_DISPLAY } from '../utils/whatsapp';
 
 export function ConversionBanner() {
-  const whatsappUrl =
-    'https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Vi%20o%20site%20da%20ANERES%20Studio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20empresa%20(Landing%20Page%2C%20Site%20ou%20V%C3%ADdeos).';
+  const whatsappUrl = getWhatsAppUrl(
+    'Olá! Vi o site da ANERES Studio e gostaria de um orçamento para minha empresa (Landing Page, Site ou Vídeos).'
+  );
 
   const scrollToContact = () => {
     const el = document.getElementById('contato');
@@ -155,7 +157,7 @@ export function ConversionBanner() {
                       Falar no WhatsApp
                     </p>
                     <p className="text-[10px] text-zinc-400 font-mono tracking-tight">
-                      (99) 99933-1639 • Resposta Rápida
+                      {WHATSAPP_DISPLAY} • Resposta Rápida
                     </p>
                   </div>
                 </div>

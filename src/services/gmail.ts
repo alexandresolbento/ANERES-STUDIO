@@ -1,4 +1,5 @@
 import { QuoteRecord } from '../types';
+import { formatWhatsAppUserUrl, getWhatsAppUrl } from '../utils/whatsapp';
 
 export const ADMIN_EMAIL = 'alexandresolbento@gmail.com';
 
@@ -57,8 +58,11 @@ export function generateQuoteEmailHtml(quote: QuoteRecord): string {
     timeStyle: 'short',
   });
 
-  const whatsappClean = quote.phone.replace(/\D/g, '');
-  const whatsappUrl = `https://wa.me/55${whatsappClean}`;
+  const whatsappUrl =
+    formatWhatsAppUserUrl(
+      quote.phone,
+      `Olá ${quote.name}! Aqui é da ANERES Studio a respeito do seu orçamento de ${quote.service}.`
+    ) || getWhatsAppUrl();
 
   return `
 <!DOCTYPE html>

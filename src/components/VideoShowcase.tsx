@@ -5,6 +5,7 @@ import { FEATURED_VIDEOS } from '../data/videos';
 import { VideoWork } from '../types';
 import { AneresLogo } from './AneresLogo';
 import { AneresWatermark } from './AneresWatermark';
+import { getWhatsAppUrl } from '../utils/whatsapp';
 
 interface VideoShowcaseProps {
   onSelectVideoForCinema: (video: VideoWork) => void;
@@ -317,7 +318,7 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
             <motion.a
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.98 }}
-              href="https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostei%20dos%20v%C3%ADdeos%20da%20ANERES%20Studio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20empresa."
+              href={getWhatsAppUrl('Olá! Gostei dos vídeos da ANERES Studio e gostaria de um orçamento para minha empresa.')}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs sm:text-sm transition-all shadow-md cursor-pointer"

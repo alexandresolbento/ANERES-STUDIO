@@ -1,5 +1,6 @@
 import { ArrowUp, Youtube, Instagram, MessageCircle, Shield } from 'lucide-react';
 import { AneresLogo } from './AneresLogo';
+import { getWhatsAppUrl, WHATSAPP_DISPLAY } from '../utils/whatsapp';
 
 interface FooterProps {
   onOpenAdmin?: () => void;
@@ -59,12 +60,12 @@ export function Footer({ onOpenAdmin }: FooterProps) {
                 </a>
 
                 <a
-                  href="https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostaria%20de%20*solicitar*%20um%20or%C3%A7amento%20para%20*minha%20empresa.*"
+                  href={getWhatsAppUrl('Olá! Gostaria de solicitar um orçamento para minha empresa.')}
                   target="_blank"
                   rel="noopener noreferrer"
                   id="footer-whatsapp-btn"
                   className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-zinc-900/90 border border-zinc-800 hover:border-emerald-500/50 hover:bg-zinc-900 text-zinc-300 hover:text-emerald-400 transition-all text-xs font-semibold group"
-                  aria-label="Chamar no WhatsApp (99) 99933-1639"
+                  aria-label={`Chamar no WhatsApp ${WHATSAPP_DISPLAY}`}
                 >
                   <MessageCircle className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
                   <span>WhatsApp</span>
@@ -113,13 +114,13 @@ export function Footer({ onOpenAdmin }: FooterProps) {
               </li>
               <li>
                 <a
-                  href="https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostaria%20de%20*solicitar*%20um%20or%C3%A7amento%20para%20*minha%20empresa.*"
+                  href={getWhatsAppUrl('Olá! Gostaria de solicitar um orçamento para minha empresa.')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-zinc-300 hover:text-emerald-400 transition-colors"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>WhatsApp (99) 99933-1639</span>
+                  <span>WhatsApp {WHATSAPP_DISPLAY}</span>
                 </a>
               </li>
               <li>

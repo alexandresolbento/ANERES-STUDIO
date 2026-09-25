@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Menu, X, ArrowUpRight, Play, Youtube, Instagram, MessageCircle } from 'lucide-react';
 import { AneresLogo } from './AneresLogo';
+import { getWhatsAppUrl, WHATSAPP_DISPLAY } from '../utils/whatsapp';
 
 interface NavbarProps {
   onOpenVideoReel: () => void;
@@ -146,13 +147,13 @@ export function Navbar({ onOpenVideoReel }: NavbarProps) {
             </a>
 
             <a
-              href="https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostaria%20de%20*solicitar*%20um%20or%C3%A7amento%20para%20*minha%20empresa.*"
+              href={getWhatsAppUrl('Olá! Gostaria de solicitar um orçamento para minha empresa.')}
               target="_blank"
               rel="noopener noreferrer"
               id="nav-whatsapp-icon"
               className="p-2 rounded-lg text-zinc-400 hover:text-emerald-400 hover:bg-zinc-900 transition-all cursor-pointer"
-              title="Chamar no WhatsApp (99) 99933-1639"
-              aria-label="Chamar no WhatsApp (99) 99933-1639"
+              title={`Chamar no WhatsApp ${WHATSAPP_DISPLAY}`}
+              aria-label={`Chamar no WhatsApp ${WHATSAPP_DISPLAY}`}
             >
               <MessageCircle className="w-4 h-4" />
             </a>
@@ -256,12 +257,12 @@ export function Navbar({ onOpenVideoReel }: NavbarProps) {
               </a>
 
               <a
-                href="https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostaria%20de%20*solicitar*%20um%20or%C3%A7amento%20para%20*minha%20empresa.*"
+                href={getWhatsAppUrl('Olá! Gostaria de solicitar um orçamento para minha empresa.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex flex-col items-center justify-center p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500/40 text-zinc-300 hover:text-emerald-400 transition-colors"
-                aria-label="Chamar no WhatsApp (99) 99933-1639"
+                aria-label={`Chamar no WhatsApp ${WHATSAPP_DISPLAY}`}
               >
                 <MessageCircle className="w-4 h-4 text-emerald-400 mb-1" />
                 <span className="text-[11px] font-medium">WhatsApp</span>
@@ -304,14 +305,14 @@ export function Navbar({ onOpenVideoReel }: NavbarProps) {
             </a>
 
             <a
-              href="https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20minha%20empresa."
+              href={getWhatsAppUrl('Olá! Gostaria de solicitar um orçamento para minha empresa.')}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-center gap-2 w-full py-3 text-xs font-bold text-zinc-950 bg-emerald-500 hover:bg-emerald-400 rounded-xl cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 fill-current" />
-              <span>Chamar no WhatsApp (99) 99933-1639</span>
+              <span>Chamar no WhatsApp {WHATSAPP_DISPLAY}</span>
             </a>
           </div>
         </div>

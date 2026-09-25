@@ -3,14 +3,16 @@ import { motion } from 'motion/react';
 import { CLIENT_LOGOS } from '../data/services';
 import { AneresLogo } from './AneresLogo';
 import { AneresWatermark } from './AneresWatermark';
+import { getWhatsAppUrl } from '../utils/whatsapp';
 
 interface HeroProps {
   onOpenVideoReel: () => void;
 }
 
 export function Hero({ onOpenVideoReel }: HeroProps) {
-  const whatsappUrl =
-    'https://api.whatsapp.com/send?phone=5599999331639&text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20minha%20empresa%20(V%C3%ADdeos%2C%20Landing%20Page%20ou%20Site).';
+  const whatsappUrl = getWhatsAppUrl(
+    'Olá! Gostaria de solicitar um orçamento para minha empresa (Vídeos, Landing Page ou Site).'
+  );
 
   return (
     <section

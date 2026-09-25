@@ -23,6 +23,7 @@ import {
 } from '../firebase';
 import { sendQuoteEmailViaGmail, ADMIN_EMAIL } from '../services/gmail';
 import { GoogleSignInButton } from './GoogleSignInButton';
+import { formatWhatsAppUserUrl, getWhatsAppUrl } from '../utils/whatsapp';
 
 interface AdminQuotesModalProps {
   isOpen: boolean;
@@ -283,8 +284,11 @@ export function AdminQuotesModal({
             </div>
           ) : (
             filteredQuotes.map((quote) => {
-              const whatsappClean = quote.phone.replace(/\D/g, '');
-              const whatsappUrl = `https://wa.me/55${whatsappClean}`;
+              const whatsappUrl =
+                formatWhatsAppUserUrl(
+                  quote.phone,
+                  `Olá ${quote.name}! Aqui é da ANERES Studio a respeito do seu orçamento de ${quote.service}.`
+                ) || getWhatsAppUrl();
 
               return (
                 <div

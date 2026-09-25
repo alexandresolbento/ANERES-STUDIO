@@ -6,6 +6,7 @@ import { saveQuoteToDatabase, getAccessToken, updateQuoteStatusInDatabase } from
 import { sendQuoteEmailViaGmail } from '../services/gmail';
 import { AneresLogo } from './AneresLogo';
 import { AneresWatermark } from './AneresWatermark';
+import { getWhatsAppUrl, WHATSAPP_DISPLAY, openWhatsAppSafely } from '../utils/whatsapp';
 
 interface ContactFormProps {
   prefilledService?: string;
@@ -49,7 +50,7 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
     const detalhes = formData.message?.trim() ? ` Detalhes: ${formData.message.trim()}` : '';
     const telefone = formData.phone?.trim() ? ` | Tel: ${formData.phone.trim()}` : '';
     const texto = `Olá! Meu nome é *${nome}*${telefone} e gostaria de solicitar um orçamento para *${servico}*.${detalhes}`;
-    return `https://api.whatsapp.com/send?phone=5599999331639&text=${encodeURIComponent(texto)}`;
+    return getWhatsAppUrl(texto);
   };
 
   const handleSendWhatsapp = async (e: React.FormEvent) => {
@@ -60,6 +61,15 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
       setErrorMessage('Por favor, informe seu nome.');
       return;
     }
+
+    // Generate link with reliable wa.me format
+    const link = buildWhatsappLink();
+
+    // Trigger WhatsApp opening immediately during the active user click event
+    // so browser popup blockers will NOT block the window/tab.
+    openWhatsAppSafely(
+      `Olá! Meu nome é *${formData.name.trim()}*${formData.phone?.trim() ? ` | Tel: ${formData.phone.trim()}` : ''} e gostaria de solicitar um orçamento para *${formData.service}*.${formData.message?.trim() ? ` Detalhes: ${formData.message.trim()}` : ''}`
+    );
 
     setStatus('submitting');
 
@@ -86,16 +96,6 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
     } catch (err) {
       console.warn('Silent save log:', err);
     }
-
-    // Open WhatsApp safely in iframe environments
-    const link = buildWhatsappLink();
-    const a = document.createElement('a');
-    a.href = link;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
 
     setStatus('success');
   };
@@ -191,7 +191,7 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
               </a>
 
               <span className="block text-center text-[11px] text-zinc-400 mt-2.5">
-                Número direto: <strong>(99) 99933-1639</strong>
+                Número direto: <strong>{WHATSAPP_DISPLAY}</strong>
               </span>
             </div>
 
@@ -278,7 +278,7 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                     </span>
                   </div>
                   <p className="text-xs text-zinc-300 mt-0.5">
-                    Atendimento imediato com a equipe • (99) 99933-1639
+                    Atendimento imediato com a equipe • {WHATSAPP_DISPLAY}
                   </p>
                 </div>
               </div>
