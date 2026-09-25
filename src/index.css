@@ -1,9 +1,180 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   Centralized Global Design Tokens & Automatic Theme System
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Neutral surfaces */
+  --theme-bg-app: #f8fafc;
+  --theme-bg-canvas: #f8fafc;
+  --theme-bg-surface: #ffffff;
+  --theme-bg-surface-elevated: #ffffff;
+  --theme-bg-surface-subtle: #f1f5f9;
+  --theme-bg-surface-hover: #e2e8f0;
+  --theme-bg-card: #ffffff;
+  --theme-bg-card-glass: rgba(255, 255, 255, 0.92);
+  --theme-bg-input: #ffffff;
+  --theme-bg-header: rgba(255, 255, 255, 0.88);
+  --theme-bg-header-solid: #ffffff;
+  --theme-bg-overlay: rgba(15, 23, 42, 0.6);
+
+  /* Borders & Dividers */
+  --theme-border: #e2e8f0;
+  --theme-border-subtle: #f1f5f9;
+  --theme-border-strong: #cbd5e1;
+  --theme-border-glass: rgba(226, 232, 240, 0.8);
+
+  /* Typography */
+  --theme-text-primary: #0f172a;
+  --theme-text-secondary: #1e293b;
+  --theme-text-muted: #475569;
+  --theme-text-faint: #64748b;
+  --theme-placeholder: #64748b;
+
+  /* Shadows */
+  --theme-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --theme-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  --theme-shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+  --theme-shadow-xl: 0 20px 32px -8px rgba(0, 0, 0, 0.1);
+
+  /* Decorative & Grid */
+  --theme-grid-lines: rgba(0, 0, 0, 0.04);
+  --theme-selection-bg: #f59e0b;
+  --theme-selection-text: #09090b;
+}
+
+/* Automatic System Dark Mode (CSS Native Media Query) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    /* Neutral surfaces */
+    --theme-bg-app: #09090b;
+    --theme-bg-canvas: #09090b;
+    --theme-bg-surface: #121215;
+    --theme-bg-surface-elevated: #18181b;
+    --theme-bg-surface-subtle: #27272a;
+    --theme-bg-surface-hover: #27272a;
+    --theme-bg-card: #18181b;
+    --theme-bg-card-glass: rgba(24, 24, 27, 0.88);
+    --theme-bg-input: #09090b;
+    --theme-bg-header: rgba(9, 9, 11, 0.88);
+    --theme-bg-header-solid: #09090b;
+    --theme-bg-overlay: rgba(0, 0, 0, 0.85);
+
+    /* Borders & Dividers */
+    --theme-border: #27272a;
+    --theme-border-subtle: #1f1f23;
+    --theme-border-strong: #3f3f46;
+    --theme-border-glass: rgba(39, 39, 42, 0.8);
+
+    /* Typography */
+    --theme-text-primary: #f4f4f5;
+    --theme-text-secondary: #e4e4e7;
+    --theme-text-muted: #cbd5e1;
+    --theme-text-faint: #a1a1aa;
+    --theme-placeholder: #a1a1aa;
+
+    /* Shadows */
+    --theme-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --theme-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.5);
+    --theme-shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.6);
+    --theme-shadow-xl: 0 20px 32px -8px rgba(0, 0, 0, 0.7);
+
+    /* Decorative & Grid */
+    --theme-grid-lines: rgba(255, 255, 255, 0.03);
+    --theme-selection-bg: #fbbf24;
+    --theme-selection-text: #09090b;
+  }
+}
+
+/* Explicit class-based overrides for programmatic / React synchronicity */
+html.dark, [data-theme="dark"] {
+  color-scheme: dark;
+
+  --theme-bg-app: #09090b;
+  --theme-bg-canvas: #09090b;
+  --theme-bg-surface: #121215;
+  --theme-bg-surface-elevated: #18181b;
+  --theme-bg-surface-subtle: #27272a;
+  --theme-bg-surface-hover: #27272a;
+  --theme-bg-card: #18181b;
+  --theme-bg-card-glass: rgba(24, 24, 27, 0.88);
+  --theme-bg-input: #09090b;
+  --theme-bg-header: rgba(9, 9, 11, 0.88);
+  --theme-bg-header-solid: #09090b;
+  --theme-bg-overlay: rgba(0, 0, 0, 0.85);
+
+  --theme-border: #27272a;
+  --theme-border-subtle: #1f1f23;
+  --theme-border-strong: #3f3f46;
+  --theme-border-glass: rgba(39, 39, 42, 0.8);
+
+  --theme-text-primary: #f4f4f5;
+  --theme-text-secondary: #e4e4e7;
+  --theme-text-muted: #cbd5e1;
+  --theme-text-faint: #a1a1aa;
+  --theme-placeholder: #a1a1aa;
+
+  --theme-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --theme-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.5);
+  --theme-shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.6);
+  --theme-shadow-xl: 0 20px 32px -8px rgba(0, 0, 0, 0.7);
+
+  --theme-grid-lines: rgba(255, 255, 255, 0.03);
+  --theme-selection-bg: #fbbf24;
+  --theme-selection-text: #09090b;
+}
+
+html.light, [data-theme="light"] {
+  color-scheme: light;
+
+  --theme-bg-app: #f8fafc;
+  --theme-bg-canvas: #f8fafc;
+  --theme-bg-surface: #ffffff;
+  --theme-bg-surface-elevated: #ffffff;
+  --theme-bg-surface-subtle: #f1f5f9;
+  --theme-bg-surface-hover: #e2e8f0;
+  --theme-bg-card: #ffffff;
+  --theme-bg-card-glass: rgba(255, 255, 255, 0.92);
+  --theme-bg-input: #ffffff;
+  --theme-bg-header: rgba(255, 255, 255, 0.88);
+  --theme-bg-header-solid: #ffffff;
+  --theme-bg-overlay: rgba(15, 23, 42, 0.6);
+
+  --theme-border: #e2e8f0;
+  --theme-border-subtle: #f1f5f9;
+  --theme-border-strong: #cbd5e1;
+  --theme-border-glass: rgba(226, 232, 240, 0.8);
+
+  --theme-text-primary: #0f172a;
+  --theme-text-secondary: #1e293b;
+  --theme-text-muted: #475569;
+  --theme-text-faint: #64748b;
+  --theme-placeholder: #64748b;
+
+  --theme-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --theme-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  --theme-shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+  --theme-shadow-xl: 0 20px 32px -8px rgba(0, 0, 0, 0.1);
+
+  --theme-grid-lines: rgba(0, 0, 0, 0.04);
+  --theme-selection-bg: #f59e0b;
+  --theme-selection-text: #09090b;
+}
+
 @layer base {
   html {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     scroll-padding-top: 5rem;
+    background-color: var(--theme-bg-app);
+    color: var(--theme-text-primary);
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   body {
@@ -13,6 +184,13 @@
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    background-color: var(--theme-bg-app);
+    color: var(--theme-text-primary);
+  }
+
+  ::selection {
+    background-color: var(--theme-selection-bg);
+    color: var(--theme-selection-text);
   }
 }
 
@@ -20,3 +198,55 @@
   font-family: 'Space Grotesk', sans-serif;
 }
 
+/* Common UI Helper Classes mapped directly to theme variables */
+.theme-bg-app {
+  background-color: var(--theme-bg-app);
+}
+
+.theme-bg-surface {
+  background-color: var(--theme-bg-surface);
+}
+
+.theme-bg-subtle {
+  background-color: var(--theme-bg-surface-subtle);
+}
+
+.theme-bg-card {
+  background-color: var(--theme-bg-card);
+}
+
+.theme-bg-input {
+  background-color: var(--theme-bg-input);
+}
+
+.theme-text-primary {
+  color: var(--theme-text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--theme-text-secondary);
+}
+
+.theme-text-muted {
+  color: var(--theme-text-muted);
+}
+
+.theme-border {
+  border-color: var(--theme-border);
+}
+
+.theme-border-strong {
+  border-color: var(--theme-border-strong);
+}
+
+.theme-shadow-md {
+  box-shadow: var(--theme-shadow-md);
+}
+
+.theme-shadow-lg {
+  box-shadow: var(--theme-shadow-lg);
+}
+
+.theme-shadow-xl {
+  box-shadow: var(--theme-shadow-xl);
+}

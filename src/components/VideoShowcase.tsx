@@ -29,7 +29,7 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
     : FEATURED_VIDEOS.filter((v) => v.category === selectedCategory);
 
   return (
-    <section id="portfolio" className="py-20 md:py-28 relative bg-zinc-950/90 border-t border-zinc-900 overflow-hidden w-full max-w-full">
+    <section id="portfolio" className="py-20 md:py-28 relative bg-slate-50/50 dark:bg-zinc-950/90 border-t border-slate-200 dark:border-zinc-900 overflow-hidden w-full max-w-full">
       {/* Visual glow */}
       <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-red-600/5 rounded-full blur-[90px] pointer-events-none transform-gpu" />
 
@@ -55,20 +55,20 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-zinc-800/80"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200 dark:border-zinc-800/80"
         >
           <div>
             <div className="flex flex-wrap items-center gap-3 mb-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-red-950/40 border border-red-500/20 text-xs font-semibold text-red-400">
-                <Youtube className="w-3.5 h-3.5 text-red-500 fill-current" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-500/20 text-xs font-bold text-red-700 dark:text-red-400">
+                <Youtube className="w-3.5 h-3.5 text-red-600 dark:text-red-500 fill-current" />
                 <span>Portfólio em Vídeo & Produções no YouTube</span>
               </div>
               <AneresLogo variant="seal" />
             </div>
-            <h2 className="font-heading text-2xl sm:text-4xl font-bold tracking-tight text-white">
+            <h2 className="font-heading text-2xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
               Nossos Trabalhos Audiovisuais
             </h2>
-            <p className="mt-2 text-sm sm:text-base text-zinc-400 max-w-2xl">
+            <p className="mt-2 text-sm sm:text-base text-slate-700 dark:text-zinc-300 max-w-2xl leading-relaxed">
               Assista às produções da ANERES Studio diretamente nas telas abaixo. Todos os vídeos foram gravados e finalizados com qualidade profissional e estão disponíveis no nosso canal oficial.
             </p>
           </div>
@@ -81,10 +81,10 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
                 type="button"
                 id={`filter-video-${cat.toLowerCase().replace(/\s+/g, '-')}`}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
                   selectedCategory === cat
                     ? 'bg-amber-400 text-zinc-950 shadow-md shadow-amber-400/20'
-                    : 'bg-zinc-900 text-zinc-300 hover:text-white hover:bg-zinc-800 border border-zinc-800'
+                    : 'bg-white dark:bg-zinc-900 text-slate-800 dark:text-zinc-200 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-zinc-800 border border-slate-300 dark:border-zinc-800 shadow-2xs'
                 }`}
               >
                 {cat}
@@ -99,7 +99,7 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.55 }}
-          className="mt-8 p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-red-950/50 via-zinc-900/90 to-zinc-950 border border-red-500/30 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-5"
+          className="mt-8 p-4 sm:p-6 rounded-2xl bg-white dark:bg-gradient-to-r dark:from-red-950/50 dark:via-zinc-900/90 dark:to-zinc-950 border border-red-200 dark:border-red-500/30 shadow-lg dark:shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-5"
         >
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
             <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-red-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-red-600/30">
@@ -107,15 +107,15 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-red-400 bg-red-500/10 px-2 py-0.5 rounded border border-red-500/20">
+                <span className="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-500/10 px-2 py-0.5 rounded border border-red-200 dark:border-red-500/20">
                   Canal Oficial no YouTube
                 </span>
-                <span className="text-xs text-zinc-400">@ANERESSTUDIO</span>
+                <span className="text-xs font-semibold text-slate-600 dark:text-zinc-300">@ANERESSTUDIO</span>
               </div>
-              <h3 className="text-base sm:text-xl font-heading font-bold text-white mt-1">
+              <h3 className="text-base sm:text-xl font-heading font-bold text-slate-900 dark:text-white mt-1">
                 Acompanhe o Portfólio Completo da ANERES Studio
               </h3>
-              <p className="text-xs sm:text-sm text-zinc-300 mt-0.5 max-w-2xl">
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-zinc-200 mt-0.5 max-w-2xl leading-relaxed">
                 Acesse o canal no YouTube para conferir nossas coberturas de eventos, comerciais para lojas, filmes de casamento e projetos em 4K.
               </p>
             </div>
@@ -147,23 +147,23 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: (index % 2) * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative rounded-2xl bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700/80 overflow-hidden shadow-2xl transition-all flex flex-col"
+                className="group relative rounded-2xl bg-white dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800 hover:border-amber-400/50 dark:hover:border-zinc-700/80 overflow-hidden shadow-md dark:shadow-2xl transition-all flex flex-col"
               >
                 {/* Screen Monitor Bezel Header */}
-                <div className="bg-zinc-950/90 px-4 py-2.5 border-b border-zinc-800 flex items-center justify-between text-xs text-zinc-400 select-none">
+                <div className="bg-slate-100 dark:bg-zinc-950/90 px-4 py-2.5 border-b border-slate-200 dark:border-zinc-800 flex items-center justify-between text-xs text-slate-600 dark:text-zinc-300 select-none">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 animate-pulse" />
-                    <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-300">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-800 dark:text-zinc-200">
                       {video.category}
                     </span>
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <span className="px-2 py-0.5 rounded bg-zinc-900 text-[10px] font-mono text-zinc-400 border border-zinc-800">
+                    <span className="px-2 py-0.5 rounded bg-white dark:bg-zinc-900 text-[10px] font-mono font-bold text-slate-800 dark:text-zinc-200 border border-slate-200 dark:border-zinc-800">
                       4K UHD
                     </span>
-                    <span className="flex items-center gap-1 text-[11px] text-zinc-400">
-                      <Clock className="w-3 h-3 text-amber-400" />
+                    <span className="flex items-center gap-1 text-[11px] font-medium text-slate-700 dark:text-zinc-300">
+                      <Clock className="w-3 h-3 text-amber-500 dark:text-amber-400" />
                       {video.duration}
                     </span>
                   </div>
@@ -219,14 +219,14 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
                 </div>
 
                 {/* Video Info & Controls */}
-                <div className="p-5 sm:p-6 flex flex-col flex-grow justify-between bg-zinc-900/40">
+                <div className="p-5 sm:p-6 flex flex-col flex-grow justify-between bg-white dark:bg-zinc-900/40">
                   <div>
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+                        <span className="text-xs font-black uppercase tracking-wider text-amber-700 dark:text-amber-400">
                           {video.client}
                         </span>
-                        <h3 className="font-heading text-lg sm:text-xl font-bold text-white mt-1 group-hover:text-amber-300 transition-colors">
+                        <h3 className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-1 group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
                           {video.title}
                         </h3>
                       </div>
@@ -236,13 +236,13 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
                         type="button"
                         onClick={() => onSelectVideoForCinema(video)}
                         title="Abrir em Tela Cheia"
-                        className="p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors cursor-pointer"
+                        className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-slate-700 hover:text-slate-950 dark:text-zinc-300 dark:hover:text-white transition-colors cursor-pointer"
                       >
                         <MonitorPlay className="w-4 h-4" />
                       </button>
                     </div>
 
-                    <p className="mt-3 text-xs sm:text-sm text-zinc-300 line-clamp-2 leading-relaxed">
+                    <p className="mt-3 text-xs sm:text-sm text-slate-700 dark:text-zinc-200 line-clamp-2 leading-relaxed">
                       {video.description}
                     </p>
 
@@ -251,7 +251,7 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
                       {video.deliverables.map((item, idx) => (
                         <span
                           key={idx}
-                          className="px-2 py-0.5 rounded text-[11px] bg-zinc-800/80 text-zinc-400 border border-zinc-700/50"
+                          className="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 dark:bg-zinc-800/80 text-slate-700 dark:text-zinc-300 border border-slate-300 dark:border-zinc-700/50"
                         >
                           {item}
                         </span>
@@ -260,7 +260,7 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
                   </div>
 
                   {/* Action Link to YouTube */}
-                  <div className="mt-6 pt-4 border-t border-zinc-800 flex items-center justify-between">
+                  <div className="mt-6 pt-4 border-t border-slate-200 dark:border-zinc-800 flex items-center justify-between">
                     <button
                       type="button"
                       onClick={() => {
@@ -270,9 +270,9 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
                           setActiveInlineVideoId(video.id);
                         }
                       }}
-                      className="text-xs font-semibold text-zinc-300 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                      className="text-xs font-bold text-slate-800 hover:text-slate-950 dark:text-zinc-200 dark:hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
                     >
-                      <Film className="w-3.5 h-3.5 text-amber-400" />
+                      <Film className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />
                       <span>{isPlayingInline ? 'Fechar Player' : 'Assistir na Tela'}</span>
                     </button>
 
@@ -280,7 +280,7 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
                       href={video.youtubeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-red-400 hover:text-red-300 hover:underline transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-red-700 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 hover:underline transition-colors"
                     >
                       <Youtube className="w-4 h-4 fill-current" />
                       <span>Assistir no YouTube</span>
@@ -299,17 +299,17 @@ export function VideoShowcase({ onSelectVideoForCinema }: VideoShowcaseProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.6 }}
-          className="mt-14 p-6 sm:p-8 rounded-2xl bg-zinc-900/90 border border-amber-400/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden"
+          className="mt-14 p-6 sm:p-8 rounded-2xl bg-white dark:bg-zinc-900/90 border border-amber-400/40 dark:border-amber-400/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden"
         >
           <div className="text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-xs font-bold text-amber-400 mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/30 dark:border-amber-400/20 text-xs font-bold text-amber-800 dark:text-amber-300 mb-2">
               <Sparkles className="w-3 h-3 fill-current" />
               <span>Gostou do estilo das produções?</span>
             </div>
-            <h3 className="font-heading text-xl sm:text-2xl font-bold text-white">
+            <h3 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
               Sua Empresa Merece Vídeos e Sites com essa Mesma Qualidade
             </h3>
-            <p className="mt-1 text-xs sm:text-sm text-zinc-300 max-w-xl">
+            <p className="mt-1 text-xs sm:text-sm text-slate-700 dark:text-zinc-200 max-w-xl leading-relaxed">
               Produção audiovisual em 4K, Landing Pages e sites profissionais pensados sob medida para atrair clientes reais.
             </p>
           </div>

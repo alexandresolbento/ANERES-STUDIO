@@ -26,7 +26,7 @@ export function Services({ onSelectServiceToQuote }: ServicesProps) {
   };
 
   return (
-    <section id="servicos" className="py-20 md:py-28 relative bg-zinc-950 border-t border-zinc-900 overflow-hidden w-full max-w-full">
+    <section id="servicos" className="py-20 md:py-28 relative bg-slate-50/70 dark:bg-zinc-950 border-t border-slate-200 dark:border-zinc-900 overflow-hidden w-full max-w-full">
       {/* Subtle ANERES Studio Brand Watermark Elements */}
       <AneresWatermark
         position="center"
@@ -52,14 +52,14 @@ export function Services({ onSelectServiceToQuote }: ServicesProps) {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-xs font-semibold text-amber-400 mb-3 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-800 text-xs font-bold text-amber-800 dark:text-amber-400 mb-3 shadow-xs">
             <span>Soluções Completas & Presença Digital</span>
           </div>
-          <h2 className="font-heading text-2xl sm:text-4xl font-bold tracking-tight text-white">
+          <h2 className="font-heading text-2xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
             Serviços & Especialidades
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-zinc-400 leading-relaxed">
-            Da captação cinematográfica em 4K ao desenvolvimento de <strong className="text-zinc-200 font-semibold">Landing Pages e sites profissionais</strong> que atraem clientes. Estratégias completas para posicionar sua empresa no topo.
+          <p className="mt-3 text-sm sm:text-base text-slate-700 dark:text-zinc-300 leading-relaxed">
+            Da captação cinematográfica em 4K ao desenvolvimento de <strong className="text-slate-900 dark:text-white font-bold">Landing Pages e sites profissionais</strong> que atraem clientes. Estratégias completas para posicionar sua empresa no topo.
           </p>
         </motion.div>
 
@@ -81,10 +81,10 @@ export function Services({ onSelectServiceToQuote }: ServicesProps) {
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 whileHover={{ y: -4, transition: { duration: 0.25 } }}
-                className={`p-6 sm:p-8 rounded-2xl bg-zinc-900/40 border transition-all duration-300 flex flex-col justify-between group shadow-xl relative overflow-hidden ${
+                className={`p-6 sm:p-8 rounded-2xl bg-white dark:bg-zinc-900/40 border transition-all duration-300 flex flex-col justify-between group shadow-md dark:shadow-xl relative overflow-hidden ${
                   isWebLanding
-                    ? 'border-amber-400/50 bg-gradient-to-br from-zinc-900/90 via-zinc-900/50 to-amber-950/20 ring-1 ring-amber-400/20'
-                    : 'border-zinc-800 hover:border-amber-400/40'
+                    ? 'border-amber-500/50 dark:border-amber-400/50 bg-gradient-to-br from-amber-50/50 via-white to-amber-50/20 dark:from-zinc-900/90 dark:via-zinc-900/50 dark:to-amber-950/20 ring-1 ring-amber-500/30 dark:ring-amber-400/20'
+                    : 'border-slate-200 dark:border-zinc-800 hover:border-amber-400/50'
                 }`}
               >
                 {isWebLanding && (
@@ -95,30 +95,30 @@ export function Services({ onSelectServiceToQuote }: ServicesProps) {
 
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700/80 flex items-center justify-center group-hover:scale-110 group-hover:border-amber-400/50 transition-all">
+                    <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-700/80 flex items-center justify-center group-hover:scale-110 group-hover:border-amber-400/50 transition-all">
                       {getIcon(serv.icon)}
                     </div>
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-400/10 text-amber-400 border border-amber-400/20">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 dark:bg-amber-400/10 text-amber-800 dark:text-amber-300 border border-amber-500/20 dark:border-amber-400/20">
                       {serv.tag}
                     </span>
                   </div>
 
-                  <h3 className="font-heading text-xl sm:text-2xl font-bold text-white group-hover:text-amber-300 transition-colors">
+                  <h3 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
                     {serv.title}
                   </h3>
-                  <p className="mt-1 text-xs sm:text-sm font-semibold text-zinc-400">
+                  <p className="mt-1 text-xs sm:text-sm font-bold text-slate-600 dark:text-zinc-300">
                     {serv.subtitle}
                   </p>
 
-                  <p className="mt-4 text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                  <p className="mt-4 text-xs sm:text-sm text-slate-700 dark:text-zinc-200 leading-relaxed">
                     {serv.description}
                   </p>
 
                   {/* Features list */}
-                  <div className="mt-6 space-y-2.5 pt-4 border-t border-zinc-800/80">
+                  <div className="mt-6 space-y-2.5 pt-4 border-t border-slate-200 dark:border-zinc-800/80">
                     {serv.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                        <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-800 dark:text-zinc-200 font-medium">
+                        <CheckCircle2 className="w-4 h-4 text-amber-500 dark:text-amber-400 shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -149,7 +149,7 @@ export function Services({ onSelectServiceToQuote }: ServicesProps) {
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-14 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-zinc-900/90 via-zinc-900/60 to-zinc-900/90 border border-amber-400/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden"
+          className="mt-14 p-6 sm:p-8 rounded-2xl bg-white dark:bg-gradient-to-r dark:from-zinc-900/90 dark:via-zinc-900/60 dark:to-zinc-900/90 border border-amber-400/40 dark:border-amber-400/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden"
         >
           <div className="absolute -right-10 -bottom-10 w-44 h-44 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
           
@@ -157,14 +157,14 @@ export function Services({ onSelectServiceToQuote }: ServicesProps) {
             <AneresLogo variant="mark" size="lg" />
             <div>
               <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
-                <span className="font-heading font-black text-sm uppercase tracking-wider text-white">
+                <span className="font-heading font-black text-sm uppercase tracking-wider text-slate-900 dark:text-white">
                   Padrão de Qualidade ANERES Studio
                 </span>
-                <span className="px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-400 text-[10px] font-bold">
+                <span className="px-2 py-0.5 rounded-full bg-amber-500/20 dark:bg-amber-400/20 text-amber-800 dark:text-amber-300 text-[10px] font-bold">
                   Autoral
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-zinc-300 max-w-xl leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 max-w-xl leading-relaxed">
                 Todas as produções recebem a assinatura e a supervisão técnica da ANERES Studio — garantindo captação em alta definição 4K, edição dinâmica e sites profissionais com alta taxa de conversão.
               </p>
             </div>

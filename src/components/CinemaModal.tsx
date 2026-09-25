@@ -54,15 +54,15 @@ export function CinemaModal({ isOpen, videoId, title, client, description, onClo
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-5xl bg-zinc-950 border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+        className="relative w-full max-w-5xl bg-white dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col transition-colors"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Cinema Screen Header Bar */}
-        <div className="bg-zinc-900/90 px-3 sm:px-6 py-2.5 sm:py-3 border-b border-zinc-800 flex items-center justify-between gap-2">
+        <div className="bg-slate-100 dark:bg-zinc-900/90 px-3 sm:px-6 py-2.5 sm:py-3 border-b border-slate-200 dark:border-zinc-800 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0 overflow-hidden">
             <AneresLogo variant="mark" size="xs" />
             <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-600 animate-pulse shrink-0" />
-            <span className="text-[11px] sm:text-xs font-mono text-zinc-300 uppercase tracking-wider truncate max-w-[120px] xs:max-w-[160px] sm:max-w-xs md:max-w-md">
+            <span className="text-[11px] sm:text-xs font-mono text-slate-800 dark:text-zinc-300 uppercase tracking-wider truncate max-w-[120px] xs:max-w-[160px] sm:max-w-xs md:max-w-md">
               {client ? `${client} // ` : ''}{title}
             </span>
           </div>
@@ -71,11 +71,11 @@ export function CinemaModal({ isOpen, videoId, title, client, description, onClo
             <button
               type="button"
               onClick={handleShare}
-              className="p-2 sm:px-2.5 sm:py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="p-2 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-slate-800 hover:text-slate-900 dark:text-zinc-300 dark:hover:text-white text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
               title="Copiar Link do YouTube"
               aria-label="Compartilhar vídeo"
             >
-              {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Share2 className="w-4 h-4" />}
+              {copied ? <Check className="w-4 h-4 text-emerald-500 dark:text-emerald-400" /> : <Share2 className="w-4 h-4" />}
               <span className="hidden sm:inline">{copied ? 'Copiado!' : 'Compartilhar'}</span>
             </button>
 
@@ -95,7 +95,7 @@ export function CinemaModal({ isOpen, videoId, title, client, description, onClo
             <button
               type="button"
               onClick={onClose}
-              className="p-2 rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors cursor-pointer flex items-center justify-center"
+              className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-zinc-800 text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer flex items-center justify-center"
               aria-label="Fechar player"
             >
               <X className="w-5 h-5" />
@@ -116,7 +116,7 @@ export function CinemaModal({ isOpen, videoId, title, client, description, onClo
 
         {/* Video Info Details Below */}
         {description && (
-          <div className="p-4 sm:p-5 bg-zinc-950 text-xs sm:text-sm text-zinc-300 border-t border-zinc-800/80">
+          <div className="p-4 sm:p-5 bg-white dark:bg-zinc-950 text-xs sm:text-sm text-slate-800 dark:text-zinc-200 border-t border-slate-200 dark:border-zinc-800/80 font-medium">
             <p className="leading-relaxed">{description}</p>
           </div>
         )}

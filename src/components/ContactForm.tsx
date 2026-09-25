@@ -112,7 +112,7 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
   };
 
   return (
-    <section id="contato" className="py-16 md:py-24 relative bg-zinc-950 border-t border-zinc-900 overflow-hidden w-full max-w-full">
+    <section id="contato" className="py-16 md:py-24 relative bg-slate-50/60 dark:bg-zinc-950 border-t border-slate-200 dark:border-zinc-900 overflow-hidden w-full max-w-full">
       {/* Background ambience */}
       <div className="absolute top-1/3 right-10 w-96 h-96 bg-amber-500/5 rounded-full blur-[100px] pointer-events-none transform-gpu" />
       <div className="absolute bottom-10 left-10 w-80 h-80 bg-emerald-500/5 rounded-full blur-[90px] pointer-events-none transform-gpu" />
@@ -136,14 +136,14 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/25 text-xs font-semibold text-amber-400 mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/25 dark:border-amber-400/25 text-xs font-bold text-amber-800 dark:text-amber-300 mb-4 shadow-xs">
             <Zap className="w-3.5 h-3.5 fill-current" />
             <span>Orçamento Rápido & Sem Compromisso</span>
           </div>
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
             Solicite Seu Orçamento em Menos de 1 Minuto
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-zinc-300">
+          <p className="mt-3 text-sm sm:text-base text-slate-700 dark:text-zinc-200">
             Landing Pages de alta conversão, sites profissionais para empresas ou vídeos em 4K. Receba uma proposta clara, ágil e pensada para o seu bolso.
           </p>
         </motion.div>
@@ -160,21 +160,21 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
           >
             
             {/* Direct WhatsApp High-Conversion Card */}
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-emerald-950/50 via-zinc-900 to-zinc-900 border border-emerald-500/30 shadow-xl relative overflow-hidden group">
+            <div className="p-6 rounded-2xl bg-white dark:bg-gradient-to-br dark:from-emerald-950/50 dark:via-zinc-900 dark:to-zinc-900 border border-emerald-500/40 shadow-lg dark:shadow-xl relative overflow-hidden group">
               <div className="flex items-center gap-2 mb-3">
                 <span className="flex h-2.5 w-2.5 relative">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                 </span>
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
                   Atendimento Online no WhatsApp
                 </span>
               </div>
 
-              <h3 className="font-heading text-xl font-bold text-white mb-2">
+              <h3 className="font-heading text-xl font-bold text-slate-900 dark:text-white mb-2">
                 Falar Direto com a Produção
               </h3>
-              <p className="text-xs text-zinc-300 mb-5 leading-relaxed">
+              <p className="text-xs text-slate-700 dark:text-zinc-200 mb-5 leading-relaxed">
                 Tire dúvidas na hora, receba exemplos de vídeos e solicite valores personalizados sem burocracia.
               </p>
 
@@ -190,64 +190,64 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                 <ArrowRight className="w-4 h-4" />
               </a>
 
-              <span className="block text-center text-[11px] text-zinc-400 mt-2.5">
-                Número direto: <strong>{WHATSAPP_DISPLAY}</strong>
+              <span className="block text-center text-[11px] text-slate-600 dark:text-zinc-300 font-medium mt-2.5">
+                Número direto: <strong className="text-slate-900 dark:text-white">{WHATSAPP_DISPLAY}</strong>
               </span>
             </div>
 
             {/* Brand Proof & Assurances */}
-            <div className="p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 space-y-3.5">
+            <div className="p-5 rounded-2xl bg-white dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800/80 space-y-3.5 shadow-xs">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/20 dark:border-amber-400/20 flex items-center justify-center text-amber-500 dark:text-amber-400 shrink-0">
                   <Clock className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white">Retorno Rápido</h4>
-                  <p className="text-[11px] text-zinc-400">Respondemos em até 2 horas úteis.</p>
+                  <h4 className="text-xs font-bold text-slate-900 dark:text-white">Retorno Rápido</h4>
+                  <p className="text-[11px] text-slate-600 dark:text-zinc-300 font-medium">Respondemos em até 2 horas úteis.</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/20 dark:border-amber-400/20 flex items-center justify-center text-amber-500 dark:text-amber-400 shrink-0">
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white">Sem Compromisso</h4>
-                  <p className="text-[11px] text-zinc-400">Analise a proposta com total liberdade.</p>
+                  <h4 className="text-xs font-bold text-slate-900 dark:text-white">Sem Compromisso</h4>
+                  <p className="text-[11px] text-slate-600 dark:text-zinc-300 font-medium">Analise a proposta com total liberdade.</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/20 dark:border-amber-400/20 flex items-center justify-center text-amber-500 dark:text-amber-400 shrink-0">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white">Qualidade Garantida em 4K</h4>
-                  <p className="text-[11px] text-zinc-400">Equipamentos de cinema e entrega pontual.</p>
+                  <h4 className="text-xs font-bold text-slate-900 dark:text-white">Qualidade Garantida em 4K</h4>
+                  <p className="text-[11px] text-slate-600 dark:text-zinc-300 font-medium">Equipamentos de cinema e entrega pontual.</p>
                 </div>
               </div>
             </div>
 
             {/* Location, Email & Instagram info */}
-            <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/60 text-xs text-zinc-400 space-y-2.5">
-              <div className="flex items-center gap-2 text-zinc-300">
-                <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
+            <div className="p-4 rounded-xl bg-white dark:bg-zinc-900/40 border border-slate-200 dark:border-zinc-800/60 text-xs text-slate-700 dark:text-zinc-300 space-y-2.5 shadow-xs">
+              <div className="flex items-center gap-2 text-slate-800 dark:text-zinc-200 font-medium">
+                <MapPin className="w-4 h-4 text-amber-500 dark:text-amber-400 shrink-0" />
                 <span>Maranhão (Gravações presenciais) & Todo Brasil</span>
               </div>
-              <div className="flex items-center gap-2 text-zinc-300">
-                <Mail className="w-4 h-4 text-amber-400 shrink-0" />
+              <div className="flex items-center gap-2 text-slate-800 dark:text-zinc-200 font-medium">
+                <Mail className="w-4 h-4 text-amber-500 dark:text-amber-400 shrink-0" />
                 <span>contato@aneresstudio.com.br</span>
               </div>
               <a
-                href="https://www.instagram.com/aneresstudio_/"
+                href="https://www.instagram.com/Fisioalexandres/"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="contact-instagram-link"
-                className="flex items-center gap-2 text-zinc-300 hover:text-pink-400 transition-colors group"
-                aria-label="Acompanhe o Instagram @aneresstudio_"
+                className="flex items-center gap-2 text-slate-800 dark:text-zinc-200 hover:text-pink-600 dark:hover:text-pink-400 transition-colors group font-medium"
+                aria-label="Acompanhe o Instagram @Fisioalexandres"
               >
-                <Instagram className="w-4 h-4 text-pink-400 shrink-0 group-hover:scale-110 transition-transform" />
-                <span className="group-hover:underline">Instagram: @aneresstudio_</span>
+                <Instagram className="w-4 h-4 text-pink-500 dark:text-pink-400 shrink-0 group-hover:scale-110 transition-transform" />
+                <span className="group-hover:underline">Instagram: @Fisioalexandres</span>
               </a>
             </div>
 
@@ -261,23 +261,23 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-7"
           >
-            <div className="p-6 sm:p-8 rounded-2xl bg-zinc-900/80 border border-zinc-800 shadow-2xl relative">
+            <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-800 shadow-xl dark:shadow-2xl relative">
               
               {/* WhatsApp Direct Header Card */}
-              <div className="flex items-center gap-3.5 p-4 rounded-xl bg-gradient-to-r from-emerald-950/60 via-zinc-950/80 to-emerald-950/60 border border-emerald-500/30 mb-6">
+              <div className="flex items-center gap-3.5 p-4 rounded-xl bg-emerald-50 dark:bg-gradient-to-r dark:from-emerald-950/60 dark:via-zinc-950/80 dark:to-emerald-950/60 border border-emerald-200 dark:border-emerald-500/30 mb-6">
                 <div className="w-11 h-11 rounded-xl bg-emerald-500 flex items-center justify-center text-zinc-950 shrink-0 shadow-lg shadow-emerald-500/20">
                   <MessageCircle className="w-6 h-6 fill-current" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-sm sm:text-base font-bold text-white">
+                    <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
                       Orçamento Direto no WhatsApp
                     </h3>
-                    <span className="text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                    <span className="text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
                       Online
                     </span>
                   </div>
-                  <p className="text-xs text-zinc-300 mt-0.5">
+                  <p className="text-xs text-slate-600 dark:text-zinc-300 mt-0.5">
                     Atendimento imediato com a equipe • {WHATSAPP_DISPLAY}
                   </p>
                 </div>
@@ -286,15 +286,15 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
               {status === 'success' ? (
                 /* Clean Visitor Success Screen */
                 <div className="text-center py-8 space-y-5 animate-in fade-in duration-300">
-                  <div className="w-14 h-14 rounded-full bg-emerald-500/10 border-2 border-emerald-500/40 text-emerald-400 mx-auto flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-full bg-emerald-500/10 border-2 border-emerald-500/40 text-emerald-500 dark:text-emerald-400 mx-auto flex items-center justify-center">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-2xl font-bold text-white">
+                    <h3 className="font-heading text-2xl font-bold text-slate-900 dark:text-white">
                       Conversa Pronta no WhatsApp!
                     </h3>
-                    <p className="mt-2 text-sm text-zinc-300 max-w-sm mx-auto">
-                      Olá, <strong className="text-white">{formData.name}</strong>! Se a janela do WhatsApp não tiver aberto automaticamente, clique no botão abaixo para nos enviar sua mensagem agora:
+                    <p className="mt-2 text-sm text-slate-600 dark:text-zinc-300 max-w-sm mx-auto">
+                      Olá, <strong className="text-slate-900 dark:text-white">{formData.name}</strong>! Se a janela do WhatsApp não tiver aberto automaticamente, clique no botão abaixo para nos enviar sua mensagem agora:
                     </p>
                   </div>
 
@@ -314,7 +314,7 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                     <button
                       type="button"
                       onClick={handleReset}
-                      className="text-xs text-zinc-400 hover:text-white underline cursor-pointer"
+                      className="text-xs text-slate-500 hover:text-slate-800 dark:text-zinc-400 dark:hover:text-white underline cursor-pointer"
                     >
                       Montar outro orçamento
                     </button>
@@ -325,14 +325,14 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                 <form onSubmit={handleSendWhatsapp} className="space-y-4">
                   
                   {errorMessage && (
-                    <div className="p-3 rounded-xl bg-red-950/60 border border-red-500/40 text-xs text-red-200">
+                    <div className="p-3 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-500/40 text-xs text-red-600 dark:text-red-200">
                       {errorMessage}
                     </div>
                   )}
 
                   {/* 1. Nome */}
                   <div>
-                    <label htmlFor="quote-name" className="block text-xs font-semibold text-zinc-200 mb-1.5">
+                    <label htmlFor="quote-name" className="block text-xs font-bold text-slate-800 dark:text-zinc-100 mb-1.5">
                       1. Seu Nome ou da sua Empresa *
                     </label>
                     <input
@@ -343,13 +343,13 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Ex: Alexandre Bento"
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-zinc-950 border border-slate-300 dark:border-zinc-700/80 text-base sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
                     />
                   </div>
 
                   {/* 2. WhatsApp / Telefone */}
                   <div>
-                    <label htmlFor="quote-phone" className="block text-xs font-semibold text-zinc-200 mb-1.5">
+                    <label htmlFor="quote-phone" className="block text-xs font-bold text-slate-800 dark:text-zinc-100 mb-1.5">
                       2. Seu Telefone / WhatsApp com DDD
                     </label>
                     <input
@@ -359,13 +359,13 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="(99) 99999-9999"
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-zinc-950 border border-slate-300 dark:border-zinc-700/80 text-base sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
                     />
                   </div>
 
                   {/* 3. Serviço Desejado */}
                   <div>
-                    <label htmlFor="quote-service" className="block text-xs font-semibold text-zinc-200 mb-1.5">
+                    <label htmlFor="quote-service" className="block text-xs font-bold text-slate-800 dark:text-zinc-100 mb-1.5">
                       3. Qual serviço você gostaria de orçar? *
                     </label>
                     <select
@@ -373,10 +373,10 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-base sm:text-sm text-white focus:outline-none focus:border-amber-400"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-zinc-950 border border-slate-300 dark:border-zinc-700/80 text-base sm:text-sm text-slate-900 dark:text-white font-medium focus:outline-none focus:border-amber-500"
                     >
                       {serviceOptions.map((opt) => (
-                        <option key={opt.id} value={opt.label} className="bg-zinc-950 text-white">
+                        <option key={opt.id} value={opt.label} className="bg-white dark:bg-zinc-950 text-slate-900 dark:text-white">
                           {opt.label}
                         </option>
                       ))}
@@ -385,8 +385,8 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
 
                   {/* 4. Email (Opcional) */}
                   <div>
-                    <label htmlFor="quote-email" className="block text-xs font-semibold text-zinc-200 mb-1.5">
-                      4. Seu E-mail <span className="text-zinc-500 font-normal">(Opcional)</span>
+                    <label htmlFor="quote-email" className="block text-xs font-bold text-slate-800 dark:text-zinc-100 mb-1.5">
+                      4. Seu E-mail <span className="text-slate-500 dark:text-zinc-400 font-normal">(Opcional)</span>
                     </label>
                     <input
                       type="email"
@@ -395,14 +395,14 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                       value={formData.email || ''}
                       onChange={handleChange}
                       placeholder="seu.email@exemplo.com"
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-zinc-950 border border-slate-300 dark:border-zinc-700/80 text-base sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
                     />
                   </div>
 
                   {/* 5. Breve Mensagem (Opcional) */}
                   <div>
-                    <label htmlFor="quote-message" className="block text-xs font-semibold text-zinc-200 mb-1.5">
-                      5. Algum detalhe ou prazo? <span className="text-zinc-500 font-normal">(Opcional)</span>
+                    <label htmlFor="quote-message" className="block text-xs font-bold text-slate-800 dark:text-zinc-100 mb-1.5">
+                      5. Algum detalhe ou prazo? <span className="text-slate-500 dark:text-zinc-400 font-normal">(Opcional)</span>
                     </label>
                     <input
                       type="text"
@@ -411,7 +411,7 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                       value={formData.message || ''}
                       onChange={handleChange}
                       placeholder="Ex: Gravação no sábado / Projeto para YouTube e Reels"
-                      className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700/80 text-base sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-zinc-950 border border-slate-300 dark:border-zinc-700/80 text-base sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
                     />
                   </div>
 
@@ -429,7 +429,7 @@ export function ContactForm({ prefilledService }: ContactFormProps) {
                     </button>
                   </div>
 
-                  <p className="text-center text-[11px] text-zinc-500 pt-1">
+                  <p className="text-center text-[11px] text-slate-600 dark:text-zinc-300 font-medium pt-1">
                     🔒 Sem compromisso e resposta rápida. Atendimento humano direto com a equipe.
                   </p>
 

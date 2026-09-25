@@ -22,7 +22,7 @@ export function ConversionBanner() {
   };
 
   return (
-    <section className="py-14 relative overflow-hidden w-full max-w-full bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 border-y border-zinc-800/80">
+    <section className="py-14 relative overflow-hidden w-full max-w-full bg-gradient-to-b from-amber-50/30 via-slate-50 to-amber-50/30 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 border-y border-slate-200 dark:border-zinc-800/80">
       {/* Glow Effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-amber-500/10 rounded-full blur-[100px] pointer-events-none transform-gpu" />
 
@@ -41,33 +41,33 @@ export function ConversionBanner() {
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 bg-gradient-to-r from-zinc-900/90 via-zinc-950/95 to-zinc-900/90 border border-amber-400/30 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8"
+          className="rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 bg-white dark:bg-gradient-to-r dark:from-zinc-900/90 dark:via-zinc-950/95 dark:to-zinc-900/90 border border-amber-400/40 dark:border-amber-400/30 shadow-xl dark:shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8"
         >
           <div className="flex-1 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-xs font-bold text-amber-400 mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/30 dark:border-amber-400/30 text-xs font-bold text-amber-800 dark:text-amber-300 mb-4">
               <Sparkles className="w-3.5 h-3.5 fill-current" />
               <span>Crescimento & Atração de Clientes</span>
             </div>
 
-            <h3 className="font-heading text-xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
+            <h3 className="font-heading text-xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white leading-tight">
               Precisa de uma Landing Page, Site Profissional ou Vídeo de Alto Impacto?
             </h3>
 
-            <p className="mt-3 text-xs sm:text-base text-zinc-300 leading-relaxed max-w-2xl">
-              Desenvolvemos <strong>Landing Pages de alta conversão</strong> para o seu negócio e <strong>sites profissionais para empresas</strong> que desejam atrair novos clientes, fortalecer a confiança da marca e gerar contatos imediatos no WhatsApp.
+            <p className="mt-3 text-xs sm:text-base text-slate-700 dark:text-zinc-200 leading-relaxed max-w-2xl">
+              Desenvolvemos <strong className="text-slate-900 dark:text-white font-bold">Landing Pages de alta conversão</strong> para o seu negócio e <strong className="text-slate-900 dark:text-white font-bold">sites profissionais para empresas</strong> que desejam atrair novos clientes, fortalecer a confiança da marca e gerar contatos imediatos no WhatsApp.
             </p>
 
-            <div className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 text-xs font-semibold text-zinc-300">
-              <span className="flex items-center gap-1.5 text-amber-300">
-                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+            <div className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 text-xs font-bold text-slate-800 dark:text-zinc-200">
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-amber-500 dark:text-amber-400 shrink-0" />
                 Landing Pages pensadas para converter
               </span>
-              <span className="flex items-center gap-1.5 text-amber-300">
-                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-amber-500 dark:text-amber-400 shrink-0" />
                 Sites profissionais para empresas
               </span>
-              <span className="flex items-center gap-1.5 text-amber-300">
-                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-amber-500 dark:text-amber-400 shrink-0" />
                 Produção audiovisual em 4K
               </span>
             </div>

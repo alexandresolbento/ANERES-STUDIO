@@ -28,7 +28,12 @@ export function AneresLogo({
     '2xl': 'h-28 sm:h-32 md:h-36',
   }[size];
 
-  const textColor = theme === 'dark' ? 'text-zinc-950' : 'text-white';
+  const textColor =
+    theme === 'dark'
+      ? 'text-white'
+      : theme === 'light'
+      ? 'text-slate-900'
+      : 'text-slate-900 dark:text-white';
 
   const logoImage = (
     <img
@@ -58,7 +63,7 @@ export function AneresLogo({
   if (variant === 'seal') {
     return (
       <div
-        className={`inline-flex items-center gap-3.5 px-4 py-2 rounded-2xl bg-zinc-900/90 border border-amber-400/30 shadow-lg shadow-amber-500/10 backdrop-blur-md group hover:border-amber-400/60 transition-all ${className}`}
+        className={`inline-flex items-center gap-3.5 px-4 py-2 rounded-2xl bg-white/95 dark:bg-zinc-900/90 border border-amber-500/30 dark:border-amber-400/30 shadow-md dark:shadow-lg shadow-amber-500/10 backdrop-blur-md group hover:border-amber-500/60 dark:hover:border-amber-400/60 transition-all ${className}`}
       >
         <div className="relative shrink-0">
           <div className="absolute inset-0 bg-amber-500/20 blur-md rounded-full pointer-events-none group-hover:bg-amber-500/40 transition-colors" />
@@ -73,14 +78,14 @@ export function AneresLogo({
         </div>
         <div className="flex flex-col text-left">
           <div className="flex items-center gap-1.5 leading-none">
-            <span className="font-heading font-black tracking-wider text-xs uppercase text-white">
+            <span className="font-heading font-black tracking-wider text-xs uppercase text-slate-900 dark:text-white">
               ANERES STUDIO
             </span>
-            <span className="px-1.5 py-0.5 rounded bg-amber-400/15 text-amber-400 text-[9px] font-mono font-bold uppercase tracking-wider">
+            <span className="px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-700 dark:text-amber-400 text-[9px] font-mono font-bold uppercase tracking-wider">
               4K OFICIAL
             </span>
           </div>
-          <span className="text-[10px] text-zinc-400 font-medium tracking-wide mt-1">
+          <span className="text-[10px] text-slate-600 dark:text-zinc-300 font-semibold tracking-wide mt-1">
             Qualidade Audiovisual Certificada
           </span>
         </div>
@@ -92,7 +97,7 @@ export function AneresLogo({
   if (variant === 'badge') {
     return (
       <div
-        className={`inline-flex items-center gap-2.5 sm:gap-3.5 px-3 sm:px-5 py-2 sm:py-3 rounded-2xl bg-gradient-to-r from-zinc-900/95 via-zinc-900/80 to-zinc-900/95 border border-amber-400/35 shadow-xl shadow-amber-500/10 backdrop-blur-md group hover:border-amber-400/70 transition-all duration-300 max-w-full ${className}`}
+        className={`inline-flex items-center gap-2.5 sm:gap-3.5 px-3 sm:px-5 py-2 sm:py-3 rounded-2xl bg-white/95 dark:bg-gradient-to-r dark:from-zinc-900/95 dark:via-zinc-900/80 dark:to-zinc-900/95 border border-amber-500/30 dark:border-amber-400/35 shadow-lg shadow-slate-900/5 dark:shadow-amber-500/10 backdrop-blur-md group hover:border-amber-500/60 dark:hover:border-amber-400/70 transition-all duration-300 max-w-full ${className}`}
       >
         <div className="relative shrink-0">
           <div className="absolute inset-0 bg-amber-500/25 blur-lg rounded-full pointer-events-none group-hover:bg-amber-400/40 transition-colors" />
@@ -107,15 +112,15 @@ export function AneresLogo({
         </div>
         <div className="flex flex-col text-left justify-center min-w-0">
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <span className="font-heading text-xs sm:text-sm md:text-base font-black tracking-[0.14em] sm:tracking-[0.16em] uppercase text-white group-hover:text-amber-300 transition-colors truncate">
+            <span className="font-heading text-xs sm:text-sm md:text-base font-black tracking-[0.14em] sm:tracking-[0.16em] uppercase text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors truncate">
               ANERES STUDIO
             </span>
-            <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-amber-400/20 text-amber-400 text-[9px] sm:text-[10px] font-bold shrink-0">
+            <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-amber-500/15 dark:bg-amber-400/20 text-amber-700 dark:text-amber-400 text-[9px] sm:text-[10px] font-bold shrink-0">
               <Sparkles className="w-2.5 h-2.5" />
               <span>OFICIAL</span>
             </span>
           </div>
-          <span className="text-[9px] sm:text-[10px] md:text-[11px] text-zinc-300 tracking-wider uppercase font-medium mt-0.5 truncate">
+          <span className="text-[9px] sm:text-[10px] md:text-[11px] text-slate-700 dark:text-zinc-200 tracking-wider uppercase font-semibold mt-0.5 truncate">
             Produções Audiovisuais & Soluções Digitais
           </span>
         </div>
@@ -138,7 +143,7 @@ export function AneresLogo({
           {showTagline && (
             <div className="flex items-center gap-2 mt-1">
               <span className="w-5 h-[1.5px] bg-amber-500/80" />
-              <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase text-amber-400">
+              <span className="text-[10px] sm:text-xs font-extrabold tracking-[0.3em] uppercase text-amber-700 dark:text-amber-400">
                 STUDIO PRODUÇÕES
               </span>
               <span className="w-5 h-[1.5px] bg-amber-500/80" />
@@ -162,13 +167,13 @@ export function AneresLogo({
             <span className={`font-heading text-lg sm:text-xl font-black tracking-[0.16em] uppercase ${textColor}`}>
               ANERES
             </span>
-            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400 border border-amber-500/30 uppercase tracking-widest">
+            <span className="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30 uppercase tracking-widest">
               Studio
             </span>
           </div>
           <div className="flex items-center gap-1.5 mt-1 leading-none">
             <span className="w-2.5 h-[1px] bg-amber-500/60" />
-            <span className="text-[9px] font-medium tracking-[0.2em] text-zinc-400 uppercase">
+            <span className="text-[9px] font-semibold tracking-[0.2em] text-slate-600 dark:text-zinc-300 uppercase">
               Marketing & Audiovisual
             </span>
             <span className="w-2.5 h-[1px] bg-amber-500/60" />

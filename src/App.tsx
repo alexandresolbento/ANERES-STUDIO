@@ -125,7 +125,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col selection:bg-amber-400 selection:text-zinc-950 relative overflow-x-hidden w-full max-w-full">
+    <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-100 flex flex-col selection:bg-amber-400 selection:text-zinc-950 relative overflow-x-hidden w-full max-w-full transition-colors duration-200">
       {/* Navigation */}
       <Navbar onOpenVideoReel={handleOpenVideoReel} />
 

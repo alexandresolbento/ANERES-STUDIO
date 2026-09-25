@@ -56,9 +56,9 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="mt-3.5 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-semibold shadow-sm"
+            className="mt-3.5 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 dark:bg-amber-400/10 border border-amber-500/30 dark:border-amber-400/30 text-amber-800 dark:text-amber-300 text-xs font-bold shadow-xs"
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
             <span>Landing Pages de Alta Conversão • Sites Profissionais • Vídeos em 4K</span>
           </motion.div>
         </motion.div>
@@ -69,10 +69,10 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heading text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.15]"
+            className="font-heading text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.15]"
           >
             Produção Audiovisual, Landing Pages e Sites Profissionais com{' '}
-            <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 dark:from-amber-200 dark:via-amber-400 dark:to-amber-500 bg-clip-text text-transparent">
               Qualidade Real
             </span>{' '}
             para Atrair Clientes
@@ -82,11 +82,11 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 text-base sm:text-lg md:text-xl text-zinc-300 font-normal leading-relaxed max-w-2xl mx-auto"
+            className="mt-6 text-base sm:text-lg md:text-xl text-slate-700 dark:text-zinc-200 font-normal leading-relaxed max-w-2xl mx-auto"
           >
-            Criamos <strong className="text-zinc-100 font-semibold">Landing Pages de alta conversão</strong> para seu negócio,{' '}
-            <strong className="text-zinc-100 font-semibold">sites profissionais para empresas</strong> que desejam atrair clientes e{' '}
-            <strong className="text-zinc-100 font-semibold">vídeos em 4K</strong> com propostas sob medida para sua realidade.
+            Criamos <strong className="text-slate-900 dark:text-white font-bold">Landing Pages de alta conversão</strong> para seu negócio,{' '}
+            <strong className="text-slate-900 dark:text-white font-bold">sites profissionais para empresas</strong> que desejam atrair clientes e{' '}
+            <strong className="text-slate-900 dark:text-white font-bold">vídeos em 4K</strong> com propostas sob medida para sua realidade.
           </motion.p>
 
           {/* High-Impact Client Attraction CTAs with spring animation */}
@@ -126,7 +126,7 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
               type="button"
               id="hero-watch-reel-btn"
               onClick={onOpenVideoReel}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 text-sm font-semibold text-zinc-200 hover:text-white bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700/80 rounded-xl transition-all shadow-md group cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 text-sm font-semibold text-slate-800 hover:text-slate-950 dark:text-zinc-200 dark:hover:text-white bg-white hover:bg-slate-100 dark:bg-zinc-900/90 dark:hover:bg-zinc-800 border border-slate-300 dark:border-zinc-700/80 rounded-xl transition-all shadow-sm dark:shadow-md group cursor-pointer"
             >
               <div className="w-5 h-5 rounded-full bg-amber-400 flex items-center justify-center text-zinc-950 group-hover:scale-110 transition-transform">
                 <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
@@ -140,18 +140,18 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.45 }}
-            className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-zinc-400"
+            className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-slate-700 dark:text-zinc-300 font-medium"
           >
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />
               Landing pages com foco em conversão
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />
               Sites responsivos e velozes
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />
               Vídeos em 4K e propostas transparentes
             </span>
           </motion.div>
@@ -163,9 +163,9 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-14 pt-8 border-t border-zinc-900 text-center"
+          className="mt-14 pt-8 border-t border-slate-200 dark:border-zinc-900 text-center"
         >
-          <p className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-6">
+          <p className="text-xs uppercase tracking-widest text-slate-600 dark:text-zinc-300 font-bold mb-6">
             Empresas, Projetos e Marcas que Confiam no ANERES Studio
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-6xl mx-auto">
@@ -173,15 +173,15 @@ export function Hero({ onOpenVideoReel }: HeroProps) {
               <motion.div
                 key={i}
                 whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                className="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-amber-400/40 text-left transition-all hover:bg-zinc-900/90 group flex flex-col justify-between cursor-default"
+                className="p-3 rounded-xl bg-white dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800/80 hover:border-amber-400/40 text-left transition-all hover:bg-slate-50 dark:hover:bg-zinc-900/90 group flex flex-col justify-between cursor-default shadow-xs"
               >
                 <div className="flex items-start gap-1.5 mb-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0 group-hover:scale-125 transition-transform" />
-                  <span className="text-xs sm:text-sm font-semibold text-zinc-200 group-hover:text-white leading-tight">
+                  <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-100 group-hover:text-slate-950 dark:group-hover:text-white leading-tight">
                     {brand.name}
                   </span>
                 </div>
-                <span className="text-[10px] text-zinc-400 pl-3 block">
+                <span className="text-[10px] text-slate-600 dark:text-zinc-400 pl-3 block font-medium">
                   {brand.category}
                 </span>
               </motion.div>
